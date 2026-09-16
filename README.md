@@ -85,7 +85,7 @@ flutter build apk --release
 
 ## Development Workflow
 
-This project is developed with [Aider](https://aider.chat) (AI pair programmer) + DeepSeek. See `AGENTS.md` for code conventions.
+Before submitting changes, run `flutter analyze` (must report 0 errors) and verify a release build with `flutter build apk --release`.
 
 ## Thanks
 

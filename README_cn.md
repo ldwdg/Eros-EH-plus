@@ -85,7 +85,7 @@ flutter build apk --release
 
 ## 开发方式
 
-本项目使用 [Aider](https://aider.chat)（AI 结对编程）+ DeepSeek 进行迭代开发，代码约定见 `AGENTS.md`。
+提交改动前请先运行 `flutter analyze`（必须 0 error），并用 `flutter build apk --release` 做一次 release 构建验证。
 
 ## 致谢
 

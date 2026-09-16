@@ -75,5 +75,14 @@ lib/config/config.dart
 .env
 libisar.so
 ios/Flutter/ephemeral/
-.aider*
 android/key.properties
+
+# local-only AI/agent tooling & notes (deliberately NOT part of the shared repo)
+AGENTS.md
+CLAUDE.md
+opencode.json
+.opencode/
+.claude/
+.cursor/
+.cursorrules
+.aider*
