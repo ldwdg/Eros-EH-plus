@@ -10,7 +10,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 const String kGithubUrl =
-    'https://api.github.com/repos/ldwdg/test/releases/latest';
+    'https://api.github.com/repos/ldwdg/Eros-EH-plus/releases/latest';
 
 class UpdateController extends GetxController {
   final _canUpdate = false.obs;
