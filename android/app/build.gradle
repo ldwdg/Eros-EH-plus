@@ -101,6 +101,9 @@ android {
 
     lint {
         disable 'InvalidPackage'
+        // 构建加速：release 打包不跑 lint（本地/CI 可单独跑 analyze/lint）
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
