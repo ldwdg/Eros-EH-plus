@@ -34,6 +34,8 @@ class AboutPage extends StatelessWidget {
             title: Text(L10n.of(context).version),
             additionalInfo: Text(
                 '${Global.packageInfo.version}(${Global.packageInfo.buildNumber}) $debugLabel'),
+            trailing: const CupertinoListTileChevron(),
+            onTap: () => updateController.showReleaseInfo(),
           ),
         );
       }
@@ -54,8 +56,8 @@ class AboutPage extends StatelessWidget {
             subtitle: Obx(() {
               return Text(!updateController.isLatestVersion
                   ? L10n.of(context)
-                      .update_to_version(updateController.latestVersion ?? '')
-                  : '${L10n.of(context).latest_version} ${updateController.latestVersion ?? ''}');
+                      .update_to_version(updateController.latestVersion)
+                  : '${L10n.of(context).latest_version} ${updateController.latestVersion}');
             }),
           ),
         );

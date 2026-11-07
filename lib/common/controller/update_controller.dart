@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+const String kRepoOwnerRepo = 'ldwdg/Eros-EH-plus';
+
 const String kGithubUrl =
     'https://api.github.com/repos/ldwdg/Eros-EH-plus/releases/latest';
 
@@ -99,6 +101,116 @@ class UpdateController extends GetxController {
     } finally {
       isChecking = false;
     }
+  }
+
+  /// 显示当前安装版本的 Release 信息，并允许跳转到 GitHub 对应页面。
+  Future<void> showReleaseInfo() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    final currentVersion = packageInfo.version;
+    final buildNumber = packageInfo.buildNumber;
+    final tag = 'v$currentVersion';
+
+    Map? release;
+    try {
+      release = await getGithubApi(
+        'https://api.github.com/repos/$kRepoOwnerRepo/releases/tags/$tag',
+      );
+    } catch (e) {
+      // 该版本可能没有对应的 release（如测试构建），回退到 releases 页面。
+      logger.d('fetch release $tag failed: $e');
+    }
+
+    if (Get.context == null) {
+      return;
+    }
+
+    final String? nameRaw = release?['name'] as String?;
+    final String title = (nameRaw != null && nameRaw.trim().isNotEmpty)
+        ? nameRaw.trim()
+        : 'Eros-EH+ $tag';
+    final String body = (release?['body'] as String?)?.trim() ?? '';
+    final String publishedAt =
+        (release?['published_at'] as String?)?.trim() ?? '';
+    final String? htmlRaw = release?['html_url'] as String?;
+    final String htmlUrl = (htmlRaw != null && htmlRaw.trim().isNotEmpty)
+        ? htmlRaw.trim()
+        : 'https://github.com/$kRepoOwnerRepo/releases/tag/$tag';
+
+    final String subText = <String>[
+      tag,
+      if (publishedAt.isNotEmpty) publishedAt.split('T').first,
+    ].join('  ·  ');
+
+    showCupertinoDialog<void>(
+      context: Get.context!,
+      builder: (dialogContext) {
+        return CupertinoAlertDialog(
+          title: Text(title),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  '${L10n.of(dialogContext).version} '
+                  '$currentVersion ($buildNumber)',
+                  style: const TextStyle(fontSize: 13),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  subText,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: CupertinoColors.systemGrey,
+                  ),
+                ),
+                if (body.isNotEmpty) ...<Widget>[
+                  const SizedBox(height: 8),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 260),
+                    child: SingleChildScrollView(
+                      child: MarkdownBody(
+                        data: body,
+                        selectable: true,
+                        styleSheetTheme: MarkdownStyleSheetBaseTheme.cupertino,
+                        styleSheet: MarkdownStyleSheet(
+                          a: const TextStyle(
+                            color: CupertinoColors.activeBlue,
+                            fontSize: 13,
+                          ),
+                          p: const TextStyle(fontSize: 13),
+                          listBullet: const TextStyle(
+                            fontSize: 13,
+                            color: CupertinoColors.systemGrey,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              child: Text(L10n.of(dialogContext).cancel),
+              onPressed: () => Get.back(),
+            ),
+            CupertinoDialogAction(
+              child: const Text('GitHub'),
+              onPressed: () {
+                Get.back();
+                launchUrlString(
+                  htmlUrl,
+                  mode: LaunchMode.externalApplication,
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _showUpdateDialog({
