@@ -41,81 +41,128 @@ class UpdateController extends GetxController {
     final currentVersion = packageInfo.version;
 
     isChecking = true;
-    final response = await getGithubApi(kGithubUrl);
-    final tagName = (response['tag_name'] as String?)?.trim() ?? '';
-    final body = (response['body'] as String?)?.trim() ?? '';
-    final htmUrl = (response['html_url'] as String?)?.trim() ?? '';
-    logger.d('tagName $tagName');
-    logger.d('body\n$body');
+    try {
+      final response = await getGithubApi(kGithubUrl);
+      final tagName = (response['tag_name'] as String?)?.trim() ?? '';
+      final body = (response['body'] as String?)?.trim() ?? '';
+      final htmUrl = (response['html_url'] as String?)?.trim() ?? '';
+      logger.d('tagName $tagName');
+      logger.d('body\n$body');
 
-    final regExpTagName = RegExp(r'^([vV])?(\d+\.\d+\.\d+)\+?(\d+)?');
-    final match = regExpTagName.firstMatch(tagName);
-    final remoteVersion = match?.group(2) ?? '';
-    logger.d('remoteVersion $remoteVersion  , currentVersion $currentVersion');
-    final compare = versionStringCompare(
-        preVersion: currentVersion, latestVersion: remoteVersion);
-    latestVersion = remoteVersion;
+      final regExpTagName = RegExp(r'^([vV])?(\d+\.\d+\.\d+)\+?(\d+)?');
+      final match = regExpTagName.firstMatch(tagName);
+      final remoteVersion = match?.group(2) ?? '';
+      logger.d('remoteVersion $remoteVersion  , currentVersion $currentVersion');
+      latestVersion = remoteVersion;
 
-    isChecking = false;
+      // 远端版本号解析失败时无法判断更新，按「已是最新」处理，避免误触发下载。
+      final bool hasValidRemoteVersion = remoteVersion.isNotEmpty;
+      final int compare = hasValidRemoteVersion
+          ? versionStringCompare(
+              preVersion: currentVersion, latestVersion: remoteVersion)
+          : 0;
 
-    if (compare >= 0) {
+      // 仅当远端【严格】比当前新时才允许更新；
+      // 版本相同或当前更新时都不应弹出更新框，更不能触发下载。
+      final bool hasUpdate = hasValidRemoteVersion && compare < 0;
+      isLatestVersion = !hasUpdate;
+      canUpdate = hasUpdate;
+
+      if (!showDialog) {
+        return;
+      }
+
+      if (!hasUpdate) {
+        // 已是最新版（或无法解析远端版本）：只提示，不弹更新下载框。
+        showToast(
+          hasValidRemoteVersion
+              ? '${L10n.of(Get.context!).latest_version} $remoteVersion'
+              : '检查更新失败',
+        );
+        return;
+      }
+
+      _showUpdateDialog(
+        remoteVersion: remoteVersion,
+        body: body,
+        htmlUrl: htmUrl,
+      );
+    } catch (e) {
+      // 请求/解析失败时不能触发下载，也保持「已是最新」的判断，
+      // 同时必须复位 isChecking，避免检查按钮一直转圈。
       isLatestVersion = true;
+      canUpdate = false;
+      logger.e('checkUpdate failed', error: e);
+      if (showDialog) {
+        showToast('检查更新失败');
+      }
+    } finally {
+      isChecking = false;
+    }
+  }
+
+  void _showUpdateDialog({
+    required String remoteVersion,
+    required String body,
+    required String htmlUrl,
+  }) {
+    final BuildContext? context = Get.context;
+    if (context == null) {
+      return;
     }
 
-    if (showDialog) {
-      showSimpleEhDiglog(
-        context: Get.context!,
-        title: remoteVersion,
-        // contentText: body,
-        content: IntrinsicHeight(
-          child: SizedBox(
-            height: 300,
-            child: SingleChildScrollView(
-              child: MarkdownBody(
-                data: body,
-                selectable: true,
-                styleSheetTheme: MarkdownStyleSheetBaseTheme.cupertino,
-                styleSheet: MarkdownStyleSheet(
-                  a: const TextStyle(
-                    color: CupertinoColors.activeBlue,
-                    fontSize: 14,
-                  ),
-                  p: const TextStyle(
-                    fontSize: 14,
-                  ),
-                  em: const TextStyle(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 14,
-                  ),
-                  listBullet: const TextStyle(
-                    fontSize: 14,
-                    color: CupertinoColors.systemGrey,
-                  ),
-                  code: CupertinoTheme.of(Get.context!)
-                      .textTheme
-                      .textStyle
-                      .copyWith(
-                          backgroundColor: Colors.transparent,
-                          color: CupertinoColors.systemPink,
-                          fontSize: CupertinoTheme.of(Get.context!)
-                                  .textTheme
-                                  .textStyle
-                                  .fontSize! *
-                              0.8,
-                          fontFamilyFallback: EHConst.monoFontFamilyFallback),
+    showSimpleEhDiglog(
+      context: context,
+      title: remoteVersion,
+      // contentText: body,
+      content: IntrinsicHeight(
+        child: SizedBox(
+          height: 300,
+          child: SingleChildScrollView(
+            child: MarkdownBody(
+              data: body,
+              selectable: true,
+              styleSheetTheme: MarkdownStyleSheetBaseTheme.cupertino,
+              styleSheet: MarkdownStyleSheet(
+                a: const TextStyle(
+                  color: CupertinoColors.activeBlue,
+                  fontSize: 14,
                 ),
+                p: const TextStyle(
+                  fontSize: 14,
+                ),
+                em: const TextStyle(
+                  fontStyle: FontStyle.italic,
+                  fontSize: 14,
+                ),
+                listBullet: const TextStyle(
+                  fontSize: 14,
+                  color: CupertinoColors.systemGrey,
+                ),
+                code: CupertinoTheme.of(context)
+                    .textTheme
+                    .textStyle
+                    .copyWith(
+                        backgroundColor: Colors.transparent,
+                        color: CupertinoColors.systemPink,
+                        fontSize: CupertinoTheme.of(context)
+                                .textTheme
+                                .textStyle
+                                .fontSize! *
+                            0.8,
+                        fontFamilyFallback: EHConst.monoFontFamilyFallback),
               ),
             ),
           ),
         ),
-        onOk: () {
-          launchUrlString(
-            htmUrl,
-            mode: LaunchMode.externalApplication,
-          );
-        },
-      );
-    }
+      ),
+      onOk: () {
+        launchUrlString(
+          htmlUrl,
+          mode: LaunchMode.externalApplication,
+        );
+      },
+    );
   }
 }
 
