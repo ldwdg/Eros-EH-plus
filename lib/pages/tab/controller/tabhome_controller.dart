@@ -39,11 +39,11 @@ class TabPages {
     EHRoutes.gallery: FontAwesomeIcons.layerGroup,
     EHRoutes.favorite: FontAwesomeIcons.solidHeart,
     EHRoutes.toplist: FontAwesomeIcons.listOl,
-    EHRoutes.history: FontAwesomeIcons.history,
+    EHRoutes.history: FontAwesomeIcons.clockRotateLeft,
     EHRoutes.download: FontAwesomeIcons.download,
-    EHRoutes.setting: FontAwesomeIcons.cog,
+    EHRoutes.setting: FontAwesomeIcons.gear,
     EHRoutes.customList: FontAwesomeIcons.layerGroup,
-    EHRoutes.favoriteTabbar: FontAwesomeIcons.heartBroken,
+    EHRoutes.favoriteTabbar: FontAwesomeIcons.heartCrack,
   };
 
   Map<String, Widget> get tabIcons => iconDatas

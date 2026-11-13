@@ -43,7 +43,8 @@ class QuickSearchListPage extends StatelessWidget {
                 onPressed: () async {
                   final _tempFilePath = await writeQuickSearchTempFile();
                   if (_tempFilePath != null) {
-                    Share.shareXFiles([XFile(_tempFilePath)]);
+                    SharePlus.instance
+                        .share(ShareParams(files: [XFile(_tempFilePath)]));
                   }
                   Get.back();
                 },

@@ -227,8 +227,8 @@ class EhPrettyPrinter extends LogPrinter {
 
   AnsiColor _getErrorColor(Level level) {
     if (colors) {
-      if (level == Level.wtf) {
-        return levelColors[Level.wtf]!.toBg();
+      if (level == Level.fatal) {
+        return levelColors[Level.fatal]!.toBg();
       } else {
         return levelColors[Level.error]!.toBg();
       }

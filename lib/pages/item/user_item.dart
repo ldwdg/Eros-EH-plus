@@ -59,7 +59,7 @@ class _UserItem extends State<UserItem> {
     }
 
     Widget _buildAvastat() {
-      const Widget _defAvatar = FaIcon(FontAwesomeIcons.solidUserCircle,
+      const Widget _defAvatar = FaIcon(FontAwesomeIcons.solidCircleUser,
         size: 55.0,
         color: CupertinoColors.systemGrey,
       );

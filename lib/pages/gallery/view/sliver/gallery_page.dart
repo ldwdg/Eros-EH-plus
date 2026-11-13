@@ -207,7 +207,7 @@ class GalleryNavigationBar extends StatelessWidget {
                 final String _url =
                     '${Api.getBaseUrl()}/g/${provider.gid}/${provider.token}';
                 logger.d('share $_url');
-                Share.share(_url);
+                SharePlus.instance.share(ShareParams(text: _url));
               }, minimumSize: Size(38, 38),
             ),
           ],

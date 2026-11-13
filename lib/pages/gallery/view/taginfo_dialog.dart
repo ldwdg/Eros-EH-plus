@@ -249,9 +249,9 @@ class _TagDialogViewState extends State<TagDialogView> {
                               fontFamilyFallback:
                                   EHConst.monoFontFamilyFallback),
                         ),
-                        imageBuilder: (Uri uri, String? title, String? alt) {
+                        sizedImageBuilder: (MarkdownImageConfig config) {
                           return EhNetworkImage(
-                            imageUrl: uri.toString(),
+                            imageUrl: config.uri.toString(),
                             placeholder: (_, __) {
                               return const Padding(
                                 padding: EdgeInsets.all(8.0),

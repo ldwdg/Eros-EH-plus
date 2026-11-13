@@ -25,7 +25,7 @@ class GalleryImageTask {
 
   Map<String, dynamic> toJson() => _$GalleryImageTaskToJson(this);
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   Id id;
 
   @Index(composite: [CompositeIndex('ser')], unique: true, replace: true)

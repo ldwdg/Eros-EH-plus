@@ -195,10 +195,10 @@ Future<String> buildEpub(GalleryTask task, {String? tempPath}) async {
   // );
 
   final backgroundColor = pimage.ColorRgba8(
-    dColor.red,
-    dColor.green,
-    dColor.blue,
-    dColor.alpha,
+    (dColor.r * 255.0).round(),
+    (dColor.g * 255.0).round(),
+    (dColor.b * 255.0).round(),
+    (dColor.a * 255.0).round(),
   );
 
   final cover = _buildCover(image, backgroundColor);

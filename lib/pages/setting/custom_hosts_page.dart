@@ -52,7 +52,7 @@ class CustomHostsPage extends StatelessWidget {
   Widget _buildListBtns(BuildContext context) {
     return CupertinoButton(
         padding: const EdgeInsets.only(right: 20),
-        child: const FaIcon(FontAwesomeIcons.plusCircle,
+        child: const FaIcon(FontAwesomeIcons.circlePlus,
           size: 20,
         ),
         onPressed: () {

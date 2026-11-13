@@ -73,13 +73,13 @@ Future<void> exportQuickSearchToFile() async {
         }
       } else {
         if (Platform.isIOS) {
-          Share.shareXFiles([
+          SharePlus.instance.share(ShareParams(files: [
             XFile(
               _tempFilePath,
               mimeType: '*/*',
               name: path.basename(_tempFilePath),
             )
-          ]);
+          ]));
           return;
         }
 
@@ -187,13 +187,13 @@ Future<void> exportAppDataToFile({bool base64 = true}) async {
       }
     } else {
       if (Platform.isIOS) {
-        Share.shareXFiles([
+        SharePlus.instance.share(ShareParams(files: [
           XFile(
             tempFilePath,
             mimeType: '*/*',
             name: path.basename(tempFilePath),
           )
-        ]);
+        ]));
         return;
       }
       logger.d('saveToDirPath');

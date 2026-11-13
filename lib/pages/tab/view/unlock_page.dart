@@ -28,8 +28,8 @@ class _UnLockPageState extends State<UnLockPage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () async => false,
+    return PopScope(
+        canPop: false,
         child: CupertinoPageScaffold(
           child: SafeArea(
             child: Container(

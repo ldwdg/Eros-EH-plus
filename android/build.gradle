@@ -16,6 +16,7 @@ subprojects {
             def javaVersion = JavaVersion.VERSION_17
             project.android {
                 // 解决 error: resource android:attr/lStar not found
+                // 统一到 API 37（:app 与各插件模块一致）
                 compileSdkVersion 36
                 // buildToolsVersion "35.0.0"
                 defaultConfig {

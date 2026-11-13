@@ -17,10 +17,10 @@ class GalleryErrorPage extends StatelessWidget {
           onPressed: onTap,
           child: FaIcon(
             randomList<FaIconData>([
-              FontAwesomeIcons.grinBeamSweat,
-              FontAwesomeIcons.sadTear,
-              FontAwesomeIcons.tired,
-              FontAwesomeIcons.surprise,
+              FontAwesomeIcons.faceGrinBeamSweat,
+              FontAwesomeIcons.faceSadTear,
+              FontAwesomeIcons.faceTired,
+              FontAwesomeIcons.faceSurprise,
             ]),
             size: 50,
             color: CupertinoDynamicColor.resolve(

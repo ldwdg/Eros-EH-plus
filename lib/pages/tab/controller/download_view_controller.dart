@@ -455,7 +455,7 @@ class DownloadViewController extends GetxController {
     final zipPath = await _exportGallery(context, () => _compZip(task));
 
     if (zipPath != null) {
-      Share.shareXFiles([XFile(zipPath)]);
+      SharePlus.instance.share(ShareParams(files: [XFile(zipPath)]));
     }
     return null;
   }
@@ -527,7 +527,7 @@ class DownloadViewController extends GetxController {
         await _exportGallery(context, () => _buildEpub(task));
 
     if (exportFilePath != null) {
-      Share.shareXFiles([XFile(exportFilePath)]);
+      SharePlus.instance.share(ShareParams(files: [XFile(exportFilePath)]));
     }
     return null;
   }
@@ -711,7 +711,7 @@ class DownloadViewController extends GetxController {
   Future shareTaskInfoFile() async {
     final tempFilePath = await _writeTaskInfoFile();
     if (tempFilePath != null) {
-      Share.shareXFiles([XFile(tempFilePath)]);
+      SharePlus.instance.share(ShareParams(files: [XFile(tempFilePath)]));
     }
   }
 

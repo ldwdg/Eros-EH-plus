@@ -1681,7 +1681,7 @@ class _FutureThumblState extends State<FutureThumbl> {
         _future = logic.fetchThumb(widget.itemSer);
         setState(() {});
       },
-      child: const FaIcon(FontAwesomeIcons.redoAlt,
+      child: const FaIcon(FontAwesomeIcons.rotateRight,
           color: CupertinoColors.destructiveRed),
     );
   }
@@ -1848,7 +1848,7 @@ Future<void> showSaveActionSheet(
 
                   SmartDialog.showLoading(
                     builder: (_) => _downloadIndicator(),
-                    backDismiss: true,
+                    backType: SmartBackType.normal,
                   );
                   try {
                     await Api.saveNetworkImageToPhoto(
@@ -1940,7 +1940,7 @@ Future<void> showShareActionSheet(
 
                   SmartDialog.showLoading(
                     builder: (_) => _downloadIndicator(),
-                    backDismiss: false,
+                    backType: SmartBackType.block,
                   );
                   try {
                     await Api.shareNetworkImage(

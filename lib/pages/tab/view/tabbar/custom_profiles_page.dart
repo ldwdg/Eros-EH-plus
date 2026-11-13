@@ -103,10 +103,10 @@ class CustomProfilesPage extends GetView<CustomTabbarController> {
       );
     });
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: true,
+      onPopInvokedWithResult: (bool didPop, Object? result) {
         controller.reorderable = false;
-        return true;
       },
       child: CupertinoPageScaffold(
         backgroundColor: CupertinoColors.systemGroupedBackground,

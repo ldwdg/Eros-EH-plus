@@ -1399,7 +1399,7 @@ class ViewExtController extends GetxController {
     }
 
     debounceTimer = Timer(durationTime, () {
-      loggerTime.v('func.call');
+      loggerTime.t('func.call');
       doSomething?.call();
       debounceTimer = null;
     });

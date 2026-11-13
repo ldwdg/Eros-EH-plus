@@ -246,7 +246,8 @@ class _LogViewPageState extends State<LogViewPage> {
                 size: 26,
               ),
               onPressed: () {
-                Share.shareXFiles([XFile(logFile.path)]);
+                SharePlus.instance
+                    .share(ShareParams(files: [XFile(logFile.path)]));
               },
             ),
           ],

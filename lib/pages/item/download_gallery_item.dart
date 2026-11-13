@@ -509,7 +509,7 @@ class DownloadGalleryItem extends GetView<DownloadViewController> {
       // 取消状态 显示重试按钮。按下重试任务
       TaskStatus.canceled: CupertinoButton(
         padding: buttonPadding,
-        child: const FaIcon(FontAwesomeIcons.redo,
+        child: const FaIcon(FontAwesomeIcons.arrowRotateRight,
           size: iconSize,
         ),
         onPressed: () {

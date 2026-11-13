@@ -240,7 +240,7 @@ class ReadButton extends StatelessWidget {
     return Obx(
       () => MouseRegionClick(
         child: CupertinoButton.filled(
-            minSize: 24,
+            minimumSize: const Size(24, 24),
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 6),
             borderRadius: BorderRadius.circular(20),
             // color: CupertinoColors.activeBlue,

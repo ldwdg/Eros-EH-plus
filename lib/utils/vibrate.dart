@@ -47,7 +47,7 @@ class VibrateUtil {
 
   Future<void> medium() async {
     logger
-        .v('_hasCustomVibrationsSupport:${await _hasCustomVibrationsSupport}\n'
+        .t('_hasCustomVibrationsSupport:${await _hasCustomVibrationsSupport}\n'
             '_hasAmplitudeControl:${await _hasAmplitudeControl}');
 
     if (!_ehSettingService.vibrate.value) {

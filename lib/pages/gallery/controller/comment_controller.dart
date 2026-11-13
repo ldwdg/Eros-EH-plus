@@ -464,7 +464,8 @@ class CommentController extends GetxController {
             )),
       ),
     );
-    SmartDialog.showLoading(builder: (_) => indicator, backDismiss: false);
+    SmartDialog.showLoading(
+        builder: (_) => indicator, backType: SmartBackType.block);
 
     // await Future.delayed(const Duration(seconds: 2));
     logger.t('_postComment $comment');
@@ -549,7 +550,7 @@ Future<void> showLoadingDialog(
   return await showCupertinoDialog<void>(
     context: context,
     builder: (BuildContext context) {
-      logger5.v('builder showLoadingDialog');
+      logger5.t('builder showLoadingDialog');
 
       runFunc().then((_) {
         if (completer.isCompleted) {

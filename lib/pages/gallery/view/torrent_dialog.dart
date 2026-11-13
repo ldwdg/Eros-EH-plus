@@ -167,7 +167,7 @@ class TorrentItem extends StatelessWidget {
                     final String _magnet =
                         'magnet:?xt=urn:btih:${torrent.hash}';
                     logger.t(_magnet);
-                    Share.share(_magnet);
+                    SharePlus.instance.share(ShareParams(text: _magnet));
                   }, minimumSize: Size(30, 30),
                 ),
               )
