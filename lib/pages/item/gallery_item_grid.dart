@@ -23,7 +23,6 @@ const double kCoverRatio = 4 / 3;
 const double kMinFixCoverRatio = 0.8;
 const double kMaxFixCoverRatio = 2.2;
 
-final EhSettingService _ehSettingService = Get.find();
 
 class GalleryItemGrid extends StatelessWidget {
   const GalleryItemGrid({Key? key, this.tabTag, required this.galleryProvider})
@@ -196,25 +195,6 @@ class GalleryItemGrid extends StatelessWidget {
     });
   }
 
-  Widget _buildRating() {
-    return Row(
-      children: <Widget>[
-        Container(
-          padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
-          child: StaticRatingBar(
-            size: 14.0,
-            rate: galleryProviderController.galleryProvider.ratingFallBack ?? 0,
-            radiusRatio: 1.5,
-            colorLight: ThemeColors.colorRatingMap[
-                galleryProviderController.galleryProvider.colorRating?.trim() ??
-                    'ir'],
-            colorDark: CupertinoDynamicColor.resolve(
-                CupertinoColors.systemGrey3, Get.context!),
-          ),
-        ),
-      ],
-    );
-  }
 
   Widget _buildCount({bool blur = false}) {
     final text = Text(
@@ -267,19 +247,6 @@ class GalleryItemGrid extends StatelessWidget {
   }
 }
 
-class _PostTime extends StatelessWidget {
-  const _PostTime({Key? key, this.postTime}) : super(key: key);
-  final String? postTime;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      postTime ?? '',
-      textAlign: TextAlign.right,
-      style: const TextStyle(fontSize: 12, color: CupertinoColors.systemGrey),
-    );
-  }
-}
 
 class _CoverImage extends StatelessWidget {
   const _CoverImage({
@@ -327,25 +294,6 @@ class _CoverImage extends StatelessWidget {
       fit: _fit,
     );
 
-    Widget getImageBlureFittedBox() {
-      Widget imageBlureFittedBox = CoverImg(
-        imgUrl: _provider.imgUrl ?? '',
-        width: coverImageWidth,
-        fit: BoxFit.contain,
-      );
-
-      imageBlureFittedBox = FittedBox(
-        fit: BoxFit.cover,
-        child: imageBlureFittedBox.blurred(
-          blur: 10,
-          colorOpacity: ehTheme.isDarkMode ? 0.5 : 0.1,
-          blurColor:
-              CupertinoTheme.of(context).barBackgroundColor.withValues(alpha: 1),
-        ),
-      );
-
-      return imageBlureFittedBox;
-    }
 
     image = Stack(
       fit: StackFit.passthrough,

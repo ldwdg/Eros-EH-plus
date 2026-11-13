@@ -1133,32 +1133,4 @@ class EhSettingService extends ProfileService {
     );
   }
 
-  Future<void> _showClipboardLinkDialog(
-    String url, {
-    bool replace = false,
-  }) async {
-    showCupertinoDialog(
-        context: Get.overlayContext!,
-        builder: (BuildContext context) {
-          return CupertinoAlertDialog(
-            title: const Text('画廊跳转'),
-            content: const Text('检测到剪贴板中包含画廊链接, 是否打开'),
-            actions: [
-              CupertinoDialogAction(
-                child: Text(L10n.of(context).cancel),
-                onPressed: () {
-                  Get.back();
-                },
-              ),
-              CupertinoDialogAction(
-                child: Text(L10n.of(context).ok),
-                onPressed: () {
-                  Get.back();
-                  NavigatorUtil.goGalleryPage(url: url, forceReplace: replace);
-                },
-              ),
-            ],
-          );
-        });
-  }
 }

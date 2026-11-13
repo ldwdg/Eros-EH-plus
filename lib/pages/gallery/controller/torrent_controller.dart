@@ -46,11 +46,6 @@ class TorrentController extends GetxController
     await _loadData();
   }
 
-  Future<String> _fetchTk() async {
-    return await getTorrentToken(
-        _pageState.gid, _pageState.galleryProvider?.token ?? '',
-        refresh: isRefresh);
-  }
 }
 
 class TorrentProvider {

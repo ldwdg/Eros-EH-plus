@@ -312,8 +312,3 @@ class _LogViewPageState extends State<LogViewPage> {
     );
   }
 }
-
-Future<Uint8List> _readFileBytes(String path) async {
-  final file = File(path);
-  return await file.readAsBytes();
-}

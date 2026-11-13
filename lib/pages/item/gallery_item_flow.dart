@@ -23,22 +23,6 @@ class GalleryItemFlow extends StatelessWidget {
   GalleryItemController get galleryProviderController =>
       Get.find(tag: galleryProvider.gid);
 
-  Widget _buildFavcatIcon() {
-    return Obx(() {
-      // logger.d('${_galleryProviderController.isFav}');
-      return Container(
-        child: galleryProviderController.isFav
-            ? Container(
-                child: FaIcon(FontAwesomeIcons.solidHeart,
-                  size: 12,
-                  color: ThemeColors.favColor[
-                      galleryProviderController.galleryProvider.favcat],
-                ),
-              )
-            : Container(),
-      );
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

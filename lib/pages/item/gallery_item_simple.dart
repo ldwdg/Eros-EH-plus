@@ -260,12 +260,6 @@ class GalleryItemSimpleWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildPostTime() {
-    return Text(
-      galleryProviderController.galleryProvider.postTime ?? '',
-      style: const TextStyle(fontSize: 11, color: CupertinoColors.systemGrey),
-    );
-  }
 
   Widget _buildCategory() {
     final Color _colorCategory = CupertinoDynamicColor.resolve(

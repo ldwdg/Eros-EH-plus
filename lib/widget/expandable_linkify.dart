@@ -129,18 +129,6 @@ class _ExpandableLinkifyState extends State<ExpandableLinkify>
 
         textPainter.layout(maxWidth: size.maxWidth);
 
-        Widget getLinkifyText({required bool isExpanded}) {
-          return Linkify(
-            text: widget.text,
-            maxLines: isExpanded ? null : widget.maxLines,
-            overflow: isExpanded ? TextOverflow.clip : widget.overflow,
-            style: widget.style,
-            onOpen: (link) => widget.onOpen?.call(link.url),
-            options: widget.options,
-            softWrap: widget.softWrap,
-            textAlign: widget.textAlign,
-          );
-        }
 
         Widget getLinkifyText2({required bool isExpanded}) {
           return EhLinkifyText(

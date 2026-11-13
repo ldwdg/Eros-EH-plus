@@ -220,33 +220,6 @@ class DownloadGalleryItem extends GetView<DownloadViewController> {
     );
   }
 
-  Widget _buildItem(BuildContext context, bool _complete, {String? addTime}) {
-    return Column(
-      children: [
-        Container(
-          padding:
-              const EdgeInsets.only(top: 4, bottom: 4, left: 20, right: 16),
-          height: 120,
-          child: Row(
-            children: [
-              // 封面
-              _buildCover(),
-              // 右侧
-              Expanded(
-                child: _buildItemInfo(context, _complete, addTime: addTime),
-              ),
-            ],
-          ),
-        ),
-        Divider(
-          indent: 20,
-          height: 0.6,
-          color: CupertinoDynamicColor.resolve(
-              CupertinoColors.systemGrey4, context),
-        ),
-      ],
-    );
-  }
 
   // 封面
   Widget _buildCover({bool cardType = false}) {

@@ -10,8 +10,6 @@ import '../global.dart';
 import 'base_service.dart';
 
 const String _regExpIP = r'(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}';
-const String _regExpHost =
-    r'^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$';
 
 class DnsService extends ProfileService {
   final _enableCustomHosts = false.obs;

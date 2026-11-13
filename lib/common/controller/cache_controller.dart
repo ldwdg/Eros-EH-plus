@@ -57,20 +57,6 @@ class CacheController extends GetxController with StateMixin<String> {
     return renderSize(_cachesize);
   }
 
-  Future<int> _getDioCacheSize() async {
-    const String _dioCacheName = 'DioCache.db';
-    final String _dioCachePath =
-        path.join(Global.appSupportPath, _dioCacheName);
-    try {
-      final io.File _dioCacheFile = io.File(_dioCachePath);
-      final int _dioCacheLength = await _dioCacheFile.length();
-      logger.d('_dioCacheFile size ${_dioCacheLength - 20480}');
-      return _dioCacheLength - 20480;
-    } catch (e) {
-      logger.e(e.toString());
-      return 0;
-    }
-  }
 
   ///加载缓存
   Future<int> _loadCache() async {

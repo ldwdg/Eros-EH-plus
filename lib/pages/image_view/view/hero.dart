@@ -23,11 +23,6 @@ class _HeroWidgetState extends State<HeroWidget> {
   late RectTween _rectTween;
 
   /// 创建径向动画
-  static RectTween _createRectTween(Rect? begin, Rect? end) {
-    final tween = RectTween(begin: begin, end: end);
-    logger.d('_rectTween $tween');
-    return tween;
-  }
 
   @override
   Widget build(BuildContext context) {

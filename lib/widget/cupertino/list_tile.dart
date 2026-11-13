@@ -3,25 +3,11 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 
 const double _kLeadingSize = 28.0;
-const double _kNotchedLeadingSize = 30.0;
-const double _kMinHeight = _kLeadingSize + 2 * 8.0;
-const double _kMinHeightWithSubtitle = _kLeadingSize + 2 * 10.0;
-const double _kNotchedMinHeight = _kNotchedLeadingSize + 2 * 12.0;
-const double _kNotchedMinHeightWithoutLeading = _kNotchedLeadingSize + 2 * 10.0;
 const EdgeInsetsDirectional _kPadding =
     EdgeInsetsDirectional.only(start: 20.0, end: 14.0, top: 2.0, bottom: 2.0);
 const EdgeInsetsDirectional _kPaddingWithSubtitle =
     EdgeInsetsDirectional.only(start: 20.0, end: 14.0, top: 8.0, bottom: 8.0);
-const EdgeInsets _kNotchedPadding = EdgeInsets.symmetric(horizontal: 14.0);
-const EdgeInsetsDirectional _kNotchedPaddingWithoutLeading =
-    EdgeInsetsDirectional.fromSTEB(28.0, 10.0, 14.0, 10.0);
 const double _kLeadingToTitle = 16.0;
-const double _kNotchedLeadingToTitle = 12.0;
-const double _kNotchedTitleToSubtitle = 3.0;
-const double _kAdditionalInfoToTrailing = 6.0;
-const double _kNotchedTitleWithSubtitleFontSize = 16.0;
-const double _kSubtitleFontSize = 12.0;
-const double _kNotchedSubtitleFontSize = 14.0;
 
 class EhCupertinoListTile extends StatelessWidget {
   const EhCupertinoListTile({

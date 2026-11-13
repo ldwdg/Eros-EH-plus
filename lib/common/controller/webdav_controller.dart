@@ -218,12 +218,6 @@ class WebdavController extends GetxController {
     }
   }
 
-  String _getIndexFileName() {
-    final DateTime _now = DateTime.now();
-    final DateFormat formatter = DateFormat('yyyyMMdd_HHmmss');
-    final String _fileName = formatter.format(_now);
-    return 'fe_his_index_$_fileName';
-  }
 
   Future<List<String>> getRemoteFileList() async {
     final list = await client.readDir(kHistoryDtlDirPath);
@@ -270,11 +264,6 @@ class WebdavController extends GetxController {
     return _list;
   }
 
-  int _mTime2MillisecondsSinceEpoch(String mTime) {
-    final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss.SSS');
-    final _mTime = formatter.parse(mTime);
-    return _mTime.millisecondsSinceEpoch;
-  }
 
   // 上传历史记录
   Future<void> uploadHistory(GalleryProvider his) async {

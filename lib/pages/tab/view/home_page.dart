@@ -4,6 +4,7 @@ import 'package:eros_fe/index.dart';
 import 'package:eros_fe/pages/tab/controller/tabhome_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'home_page_large.dart';
@@ -51,8 +52,9 @@ class HomePage extends GetView<TabHomeController> {
           return;
         }
         final bool shouldPop = await controller.onWillPop();
-        if (shouldPop && context.mounted) {
-          Navigator.of(context).pop();
+        if (shouldPop) {
+          // 根路由下 pop 不会退出 app，需显式走系统返回
+          await SystemNavigator.pop();
         }
       },
       child: child,

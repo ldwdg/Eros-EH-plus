@@ -322,32 +322,6 @@ class ArchiverDownloadController extends GetxController {
   }
 
   /// 获取下载路径
-  Future<String> _getArchiverDownloadPath_Old() async {
-    late String _dirPath;
-
-    if (GetPlatform.isAndroid && ehSettingService.downloadLocatino.isNotEmpty) {
-      // 自定义路径
-      logger.d('自定义下载路径');
-      await requestManageExternalStoragePermission();
-      _dirPath = path.join(ehSettingService.downloadLocatino, 'Archiver');
-    } else if (GetPlatform.isAndroid) {
-      logger.d('无自定义下载路径');
-      _dirPath =
-          path.join((await getExternalStorageDirectory())!.path, 'Archiver');
-    } else {
-      _dirPath = path.join(Global.appDocPath, 'Download', 'Archiver');
-    }
-
-    final Directory savedDir = Directory(_dirPath);
-    // 判断下载路径是否存在
-    final bool hasExisted = savedDir.existsSync();
-    // 不存在就新建路径
-    if (!hasExisted) {
-      savedDir.createSync(recursive: true);
-    }
-
-    return _dirPath;
-  }
 
   // 根据 downloadUrl 和 savePath 下载文件
   Future<String?> _downloadArchiverFile(

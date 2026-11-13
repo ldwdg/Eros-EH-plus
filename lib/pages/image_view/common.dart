@@ -27,7 +27,6 @@ enum LoadFrom {
   archiver,
 }
 
-Map<String, bool> _throttles = {};
 
 class GalleryPara {
   /// 内部构造方法，可避免外部暴露构造函数，进行实例化

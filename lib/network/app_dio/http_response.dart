@@ -8,7 +8,6 @@ import 'exception.dart';
 import 'http_transformer.dart';
 
 class DioHttpResponse<T> {
-  DioHttpResponse._internal({this.ok = false});
 
   DioHttpResponse.success(this.data) {
     ok = true;

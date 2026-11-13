@@ -357,18 +357,6 @@ class GalleryInfoView extends StatelessWidget {
                 style: _hearTextStyle),
           ],
         );
-    Widget rateCountWidget() => Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FaIcon(FontAwesomeIcons.solidStar,
-              color: CupertinoDynamicColor.resolve(
-                  CupertinoColors.secondaryLabel, context),
-              size: 12,
-            ).paddingOnly(right: paddingRight),
-            Text(_pageState.galleryProvider?.ratingCount ?? '...',
-                style: _hearTextStyle),
-          ],
-        );
     Widget potTimeWidget() => Row(
           mainAxisSize: MainAxisSize.min,
           children: [

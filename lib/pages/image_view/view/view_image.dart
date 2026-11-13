@@ -382,81 +382,6 @@ class _ViewImageState extends State<ViewImage> with TickerProviderStateMixin {
         });
   }
 
-  Widget _buildViewImageWidget() {
-    final GalleryImage? imageFromState =
-        vState.pageState?.imageMap[widget.imageSer];
-    logger.t('imageFromState ${imageFromState?.toJson()}');
-
-    if (imageFromState?.hide ?? false) {
-      return ViewAD(ser: widget.imageSer);
-    }
-
-    if ((imageFromState?.completeCache ?? false) &&
-        !(imageFromState?.changeSource ?? false)) {
-      // 图片文件已下载 加载显示本地图片文件
-      if (imageFromState?.tempPath?.isNotEmpty ?? false) {
-        logger.t('${widget.imageSer} filePath 不为空，加载图片文件');
-        return fileImage(imageFromState!.tempPath!);
-      }
-
-      if (imageFromState?.imageUrl != null &&
-          (imageFromState?.downloadProcess == null)) {
-        controller.downloadImage(
-            ser: widget.imageSer,
-            url: imageFromState!.imageUrl!,
-            onError: (e) {
-              _buildErr(e);
-            });
-
-        return _buildDownloadImage(debugLable: 'FutureBuilder 外');
-      }
-    }
-
-    logger.d('return FutureBuilder ser:${widget.imageSer}');
-    return FutureBuilder<GalleryImage?>(
-        future: controller.imageFutureMap[widget.imageSer],
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasError || snapshot.data == null) {
-              return _buildErr(snapshot.error);
-            }
-            final GalleryImage? imageData = snapshot.data;
-
-            // 图片文件已下载 加载显示本地图片文件
-            if (imageData?.filePath?.isNotEmpty ?? false) {
-              logger.d('file... ${imageData?.filePath}');
-              return fileImage(imageData!.filePath!);
-            }
-
-            if (imageData?.tempPath?.isNotEmpty ?? false) {
-              logger.d('file... ${imageData?.tempPath}');
-              return fileImage(imageData!.tempPath!);
-            }
-
-            if (imageData?.imageUrl != null) {
-              logger.d('downloadImage...');
-
-              controller.downloadImage(
-                ser: widget.imageSer,
-                url: imageData!.imageUrl!,
-                reset: true,
-              );
-            }
-
-            Widget image = _buildDownloadImage(debugLable: 'FutureBuilder内');
-
-            return image;
-          } else {
-            return ViewLoading(
-              debugLabel: 'FutureBuilder 加载画廊页数据',
-              ser: widget.imageSer,
-              duration: vState.viewMode != ViewMode.topToBottom
-                  ? const Duration(milliseconds: 200)
-                  : null,
-            );
-          }
-        });
-  }
 
   Widget _buildViewImageWidgetProvider() {
     final GalleryImage? imageFromState =
@@ -662,35 +587,4 @@ class _ViewImageState extends State<ViewImage> with TickerProviderStateMixin {
     }
   }
 
-  Widget _buildDownloadImage({String? debugLable}) {
-    if (kDebugMode && debugLable != null) {
-      logger.d('_buildDownloadImage $debugLable');
-    }
-    return GetBuilder<ViewExtController>(
-      id: '${idProcess}_${widget.imageSer}',
-      builder: (controller) {
-        final image = controller.vState.imageMap?[widget.imageSer];
-        if (image == null) {
-          return const SizedBox.shrink();
-        }
-
-        if (image.errorInfo?.isNotEmpty ?? false) {
-          return ViewError(
-            ser: widget.imageSer,
-            errInfo: image.errorInfo,
-          );
-        }
-
-        final process = image.downloadProcess ?? 0.0;
-        if (process < 1.0) {
-          return ViewLoading(
-            ser: widget.imageSer,
-            progress: process,
-          );
-        } else {
-          return fileImage(image.tempPath!);
-        }
-      },
-    );
-  }
 }

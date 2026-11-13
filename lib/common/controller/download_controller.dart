@@ -1082,14 +1082,6 @@ class DownloadController extends GetxController {
   }
 
   // 暂停所有任务
-  void _galleryTaskPausedAll() {
-    for (final task in dState.galleryTasks) {
-      if (task.status != TaskStatus.complete.value) {
-        galleryTaskPaused(task.gid);
-        _updateDownloadView(['DownloadGalleryItem_${task.gid}']);
-      }
-    }
-  }
 
   /// 设置同时下载的画廊数
   void setConcurrentGalleries(int count) {

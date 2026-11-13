@@ -11,15 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-const Color _kDefaultNavBarBorderColor = Color(0x4D000000);
 
-const Border _kDefaultNavBarBorder = Border(
-  bottom: BorderSide(
-    color: _kDefaultNavBarBorderColor,
-    width: 0.2, // One physical pixel.
-    style: BorderStyle.solid,
-  ),
-);
 
 class DownloadTab extends StatefulWidget {
   const DownloadTab({super.key});

@@ -28,7 +28,6 @@ class EhSliverList extends StatelessWidget {
   final int? lastTopItemIndex;
   final bool keepPosition;
 
-  EhSettingService get _ehSettingService => Get.find();
 
   @override
   Widget build(BuildContext context) {

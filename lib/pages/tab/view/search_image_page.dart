@@ -136,27 +136,8 @@ class SearchImagePage extends GetView<SearchImageController> {
   }
 
   // 构建颜色列表
-  Widget _buildSliverList() => SliverList(
-        delegate: SliverChildBuilderDelegate(
-            (_, int index) => _buildColorItem(data[index]),
-            childCount: data.length),
-      );
 
   // 构建颜色列表item
-  Widget _buildColorItem(Color color) => Card(
-        child: Container(
-          alignment: Alignment.center,
-          width: 100,
-          height: 60,
-          color: color,
-          child: Text(
-            colorString(color),
-            style: const TextStyle(color: Colors.white, shadows: [
-              Shadow(color: Colors.black, offset: Offset(.5, .5), blurRadius: 2)
-            ]),
-          ),
-        ),
-      );
 
   // 颜色转换为文字
   String colorString(Color color) =>

@@ -360,49 +360,6 @@ class DownloadViewController extends GetxController {
         });
   }
 
-  Future<void> _showDeleteDialog(int taskIndex, DownloadType type) async {
-    return showCupertinoDialog<void>(
-      context: Get.overlayContext!,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return CupertinoAlertDialog(
-          title: Text(L10n.of(context).delete_task),
-          actions: [
-            CupertinoDialogAction(
-              onPressed: () async {
-                Get.back();
-                type == DownloadType.archiver
-                    ? removeArchiverTask(taskIndex, shouldDeleteContent: false)
-                    : removeGalleryTask(taskIndex, shouldDeleteContent: false);
-              },
-              child: Text(
-                L10n.of(context).delete_task_only,
-                style: const TextStyle(color: CupertinoColors.destructiveRed),
-              ),
-            ),
-            CupertinoDialogAction(
-              onPressed: () async {
-                Get.back();
-                type == DownloadType.archiver
-                    ? removeArchiverTask(taskIndex)
-                    : removeGalleryTask(taskIndex);
-              },
-              child: Text(
-                L10n.of(context).delete_task_and_content,
-                style: const TextStyle(color: CupertinoColors.destructiveRed),
-              ),
-            ),
-            CupertinoDialogAction(
-              onPressed: () async {
-                Get.back();
-              },
-              child: Text(L10n.of(context).cancel),
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   Future<void> _showExportSheet({GalleryTask? task}) async {
     if (task == null) {
@@ -701,12 +658,6 @@ class DownloadViewController extends GetxController {
     }*/
   }
 
-  String _getLocalFilePath() {
-    final DateTime now = DateTime.now();
-    final DateFormat formatter = DateFormat('yyyyMMdd_HHmmss');
-    final String nowTime = formatter.format(now);
-    return path.join(Global.appDocPath, 'FEhDownloadTask_$nowTime.zip');
-  }
 
   Future shareTaskInfoFile() async {
     final tempFilePath = await _writeTaskInfoFile();
