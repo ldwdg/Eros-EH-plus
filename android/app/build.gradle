@@ -36,7 +36,7 @@ def _storePassword = System.getenv("KEYSTORE_PASSWORD") ?: keystoreProperties.ge
 
 android {
     // ndkVersion "27.0.12077973"
-    compileSdkVersion 35
+    compileSdkVersion 36
     namespace 'com.ldwdg.erosehentai'
 
     sourceSets {
@@ -94,8 +94,9 @@ android {
             if (signingConfigs.debug.storePassword != null){
                 signingConfig signingConfigs.debug
             }
-            minifyEnabled true
-            shrinkResources true
+            // debug 不做混淆/资源压缩：构建更快、便于调试
+            minifyEnabled false
+            shrinkResources false
         }
     }
 
@@ -114,12 +115,6 @@ flutter {
 dependencies {
     implementation "androidx.startup:startup-runtime:1.2.0"
     implementation 'com.google.mlkit:barcode-scanning:17.3.0'
-}
-
-configurations.configureEach {
-    resolutionStrategy {
-        force 'androidx.core:core-ktx:1.6.0'
-    }
 }
 
 ext {

@@ -9,7 +9,7 @@
             android:name="${applicationName}"
             android:label="Eros-EH+"
             android:icon="@mipmap/ic_launcher"
-            android:localeConfig="@xml/locales_config" tools:targetApi="r">
+            android:localeConfig="@xml/locales_config">
         <activity
                 android:name=".MainActivity"
                 android:exported="true"
@@ -17,7 +17,6 @@
                 android:theme="@style/LaunchTheme"
                 android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
                 android:hardwareAccelerated="true"
-                android:requestLegacyExternalStorage="true"
                 android:windowSoftInputMode="adjustResize">
             <meta-data
                     android:name="io.flutter.embedding.android.NormalTheme"
@@ -28,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
-            <intent-filter android:autoVerify="true" tools:targetApi="m">
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
@@ -103,8 +102,7 @@
     <!-- 获取当前WiFi接入的状态以及WLAN热点的信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- MANAGE_EXTERNAL_STORAGE：全盘访问（非 Play 分发场景）；后续可评估迁移 SAF/MediaStore -->
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage"/>
 
     <!-- 震动 -->
