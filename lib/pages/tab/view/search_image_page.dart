@@ -160,7 +160,7 @@ class SearchImagePage extends GetView<SearchImageController> {
 
   // 颜色转换为文字
   String colorString(Color color) =>
-      "#${color.value.toRadixString(16).padLeft(8, '0').toUpperCase()}";
+      "#${color.toARGB32().toRadixString(16).padLeft(8, '0').toUpperCase()}";
 }
 
 class ImagePersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
@@ -247,7 +247,7 @@ class ImagePersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
       ).frosted(
         blur: 8,
         frostColor:
-            CupertinoTheme.of(context).barBackgroundColor.withOpacity(1),
+            CupertinoTheme.of(context).barBackgroundColor.withValues(alpha: 1),
         frostOpacity: 0.55,
       ),
     );

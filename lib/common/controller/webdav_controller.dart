@@ -210,7 +210,7 @@ class WebdavController extends GetxController {
     try {
       final list = await client.readDir(dir);
       logger.t('$dir\n${list.map((e) => '${e.name} ${e.mTime}').join('\n')}');
-    } on DioError catch (err) {
+    } on DioException catch (err) {
       if (err.response?.statusCode == 404) {
         logger.d('dir $dir 404, mkdir...');
         await client.mkdirAll(dir);
@@ -296,7 +296,7 @@ class WebdavController extends GetxController {
 
       await client.writeFromFile(
           _path, '$kHistoryDtlDirPath/${his.gid}_${his.lastViewTime}.json');
-    } on DioError catch (err) {
+    } on DioException catch (err) {
       logger.d('${err.response?.statusCode}');
       if (err.response?.statusCode == 404) {
         logger.d('file 404');
@@ -446,7 +446,7 @@ class WebdavController extends GetxController {
     try {
       await client.writeFromFile(
           _path, '$kGroupDirPath/${profile.syncFileName}.json');
-    } on DioError catch (err) {
+    } on DioException catch (err) {
       logger.d('${err.response?.statusCode}');
       if (err.response?.statusCode == 404) {
         logger.d('file 404');
@@ -541,7 +541,7 @@ class WebdavController extends GetxController {
     try {
       await client.writeFromFile(
           _path, '$kSearchDirPath/${kQuickSearchFile}_$time.txt');
-    } on DioError catch (err) {
+    } on DioException catch (err) {
       logger.d('${err.response?.statusCode}');
       if (err.response?.statusCode == 404) {
         logger.d('file 404');

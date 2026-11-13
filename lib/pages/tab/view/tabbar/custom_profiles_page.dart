@@ -125,7 +125,6 @@ class CustomProfilesPage extends GetView<CustomTabbarController> {
                       : 0,
                   duration: const Duration(milliseconds: 300),
                   child: CupertinoButton(
-                    minSize: 40,
                     padding: const EdgeInsets.all(0),
                     child: const Icon(
                       CupertinoIcons.refresh_thick,
@@ -133,7 +132,7 @@ class CustomProfilesPage extends GetView<CustomTabbarController> {
                     ),
                     onPressed: () async {
                       await controller.syncProfiles();
-                    },
+                    }, minimumSize: Size(40, 40),
                   ),
                 ),
                 AnimatedCrossFade(
@@ -143,34 +142,31 @@ class CustomProfilesPage extends GetView<CustomTabbarController> {
                   duration: const Duration(milliseconds: 300),
                   firstChild: CupertinoButton(
                     padding: const EdgeInsets.all(0),
-                    minSize: 40,
                     child: const Icon(
                       CupertinoIcons.sort_down_circle_fill,
                       size: 28,
                     ),
                     onPressed: () =>
-                        controller.reorderable = !controller.reorderable,
+                        controller.reorderable = !controller.reorderable, minimumSize: Size(40, 40),
                   ),
                   secondChild: CupertinoButton(
                     padding: const EdgeInsets.all(0),
-                    minSize: 40,
                     child: const Icon(
                       CupertinoIcons.sort_down_circle,
                       size: 28,
                     ),
                     onPressed: () =>
-                        controller.reorderable = !controller.reorderable,
+                        controller.reorderable = !controller.reorderable, minimumSize: Size(40, 40),
                   ),
                 ),
                 CupertinoButton(
                   padding: const EdgeInsets.all(0),
-                  minSize: 40,
                   child: const Icon(
                     // FontAwesomeIcons.plus,
                     CupertinoIcons.plus_circle,
                     size: 28,
                   ),
-                  onPressed: controller.toEditPage,
+                  onPressed: controller.toEditPage, minimumSize: Size(40, 40),
                 ),
               ],
             );

@@ -271,7 +271,7 @@ class _GallerySearchPageState extends State<GallerySearchPage> {
                     blur: 8,
                     frostColor: CupertinoTheme.of(context)
                         .barBackgroundColor
-                        .withOpacity(1),
+                        .withValues(alpha: 1),
                     frostOpacity: 0.55,
                   ),
                 ),
@@ -294,7 +294,7 @@ class _GallerySearchPageState extends State<GallerySearchPage> {
           decoration: BoxDecoration(
             color: CupertinoDynamicColor.resolve(
                     ehTheme.themeData!.barBackgroundColor, context)
-                .withOpacity(1),
+                .withValues(alpha: 1),
             border: _kDefaultNavBarBorder,
           ),
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -775,7 +775,6 @@ class _GallerySearchPageState extends State<GallerySearchPage> {
             Obx(() {
               if (controller.afterJump) {
                 return CupertinoButton(
-                  minSize: 40,
                   padding: const EdgeInsets.all(0),
                   child: const Icon(
                     CupertinoIcons.arrow_up_circle,
@@ -783,7 +782,7 @@ class _GallerySearchPageState extends State<GallerySearchPage> {
                   ),
                   onPressed: () {
                     controller.jumpToTop();
-                  },
+                  }, minimumSize: Size(40, 40),
                 );
               } else {
                 return const SizedBox();
@@ -792,7 +791,6 @@ class _GallerySearchPageState extends State<GallerySearchPage> {
             Obx(() {
               if (controller.next.isNotEmpty) {
                 return CupertinoButton(
-                  minSize: 40,
                   padding: const EdgeInsets.all(0),
                   child: const Icon(
                     CupertinoIcons.arrow_uturn_down_circle,
@@ -800,14 +798,13 @@ class _GallerySearchPageState extends State<GallerySearchPage> {
                   ),
                   onPressed: () {
                     controller.showJumpDialog(context);
-                  },
+                  }, minimumSize: Size(40, 40),
                 );
               } else {
                 return const SizedBox.shrink();
               }
             }),
             CupertinoButton(
-              minSize: 36,
               padding: const EdgeInsets.all(0),
               child: const FaIcon(
                 FontAwesomeIcons.image,
@@ -817,11 +814,10 @@ class _GallerySearchPageState extends State<GallerySearchPage> {
                 await Get.toNamed(
                   EHRoutes.searchImage,
                 );
-              },
+              }, minimumSize: Size(36, 36),
             ),
             // 筛选
             CupertinoButton(
-              minSize: 36,
               padding: const EdgeInsets.all(0),
               child: const FaIcon(
                 FontAwesomeIcons.filter,
@@ -829,7 +825,7 @@ class _GallerySearchPageState extends State<GallerySearchPage> {
               ),
               onPressed: () {
                 showFilterSetting();
-              },
+              }, minimumSize: Size(36, 36),
             ),
 
             // 添加到快捷搜索
@@ -894,7 +890,7 @@ class SearchTextFieldIn extends StatelessWidget {
         return CupertinoTextField(
           style: const TextStyle(height: 1.25),
           decoration: BoxDecoration(
-            color: ehTheme.textFieldBackgroundColor!.withOpacity(0.6),
+            color: ehTheme.textFieldBackgroundColor!.withValues(alpha: 0.6),
             borderRadius: const BorderRadius.all(Radius.circular(8.0)),
           ),
           placeholder: L10n.of(context).search,
@@ -906,13 +902,12 @@ class SearchTextFieldIn extends StatelessWidget {
           // clearButtonMode: OverlayVisibilityMode.editing,
           prefix: CupertinoButton(
             padding: const EdgeInsets.symmetric(horizontal: 4),
-            minSize: 0,
             child: FaIcon(
               FontAwesomeIcons.magnifyingGlass,
               size: 20.0,
-              color: CupertinoColors.systemGrey.withOpacity(iconOpacity),
+              color: CupertinoColors.systemGrey.withValues(alpha: iconOpacity),
             ),
-            onPressed: () {},
+            onPressed: () {}, minimumSize: Size(0, 0),
           ),
           suffix: GetBuilder<SearchPageController>(
             id: GetIds.SEARCH_CLEAR_BTN,
@@ -944,7 +939,7 @@ class SearchTextFieldIn extends StatelessWidget {
                                     size: 18.0,
                                     color: CupertinoDynamicColor.resolve(
                                             _kClearButtonColor, Get.context!)
-                                        .withOpacity(iconOpacity),
+                                        .withValues(alpha: iconOpacity),
                                   ),
                           ),
                         );
@@ -958,7 +953,7 @@ class SearchTextFieldIn extends StatelessWidget {
                         size: 20.0,
                         color: CupertinoDynamicColor.resolve(
                                 _kClearButtonColor, Get.context!)
-                            .withOpacity(iconOpacity),
+                            .withValues(alpha: iconOpacity),
                       ).paddingSymmetric(horizontal: 6),
                     ),
                   if (controller.textIsNotEmpty && !controller.textIsGalleryUrl)
@@ -969,7 +964,7 @@ class SearchTextFieldIn extends StatelessWidget {
                         size: 20.0,
                         color: CupertinoDynamicColor.resolve(
                                 _kClearButtonColor, Get.context!)
-                            .withOpacity(iconOpacity),
+                            .withValues(alpha: iconOpacity),
                       ).paddingSymmetric(horizontal: 4),
                     ),
                   if (controller.textIsNotEmpty)
@@ -980,7 +975,7 @@ class SearchTextFieldIn extends StatelessWidget {
                         size: 20.0,
                         color: CupertinoDynamicColor.resolve(
                                 _kClearButtonColor, Get.context!)
-                            .withOpacity(iconOpacity),
+                            .withValues(alpha: iconOpacity),
                       ).paddingSymmetric(horizontal: 6),
                     ),
                   GestureDetector(
@@ -990,7 +985,7 @@ class SearchTextFieldIn extends StatelessWidget {
                       size: 18.0,
                       color: CupertinoDynamicColor.resolve(
                               _kClearButtonColor, Get.context!)
-                          .withOpacity(iconOpacity),
+                          .withValues(alpha: iconOpacity),
                     ).paddingOnly(right: 10, left: 6),
                   ),
                 ],

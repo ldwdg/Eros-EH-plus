@@ -30,7 +30,6 @@ class BlockRulesPage extends GetView<BlockController> {
         middle: Text(_title),
         trailing: CupertinoButton(
           padding: const EdgeInsets.all(0),
-          minSize: 40,
           child: const Icon(
             CupertinoIcons.plus_circle,
             size: 28,
@@ -43,7 +42,7 @@ class BlockRulesPage extends GetView<BlockController> {
             if (result != null && result is BlockRule) {
               controller.addBlockRule(result);
             }
-          },
+          }, minimumSize: Size(40, 40),
         ),
       ),
       child: CustomScrollView(slivers: [

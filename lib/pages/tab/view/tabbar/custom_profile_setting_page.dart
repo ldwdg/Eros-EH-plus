@@ -73,7 +73,6 @@ class _CustomProfileSettingPageState extends State<CustomProfileSettingPage> {
       navigationBar: CupertinoNavigationBar(
         trailing: CupertinoButton(
           padding: const EdgeInsets.all(0),
-          minSize: 40,
           child: const Icon(
             CupertinoIcons.check_mark_circled,
             size: 28,
@@ -93,7 +92,7 @@ class _CustomProfileSettingPageState extends State<CustomProfileSettingPage> {
                 lastEditTime: DateTime.now().millisecondsSinceEpoch.oN,
               ),
             );
-          },
+          }, minimumSize: Size(40, 40),
         ),
       ),
       child: CustomScrollView(

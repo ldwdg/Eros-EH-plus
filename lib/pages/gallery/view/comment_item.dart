@@ -345,7 +345,6 @@ class _CommentTail extends StatelessWidget {
         if ((galleryComment.canEdit ?? false) && !simple)
           CupertinoButton(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            minSize: 0,
             child: FaIcon(
               FontAwesomeIcons.penToSquare,
               size: kSizeNotVote,
@@ -358,13 +357,12 @@ class _CommentTail extends StatelessWidget {
                 id: galleryComment.id!,
                 oriComment: galleryComment.text,
               );
-            },
+            }, minimumSize: Size(0, 0),
           ),
         // 点赞
         if ((galleryComment.canVote ?? false) && !simple)
           CupertinoButton(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            minSize: 0,
             child: FaIcon(
               galleryComment.vote! > 0
                   ? FontAwesomeIcons.solidThumbsUp
@@ -376,13 +374,12 @@ class _CommentTail extends StatelessWidget {
               vibrateUtil.light();
               logger.i('vote up ${galleryComment.id}');
               commentController.commitVoteUp(galleryComment.id!);
-            },
+            }, minimumSize: Size(0, 0),
           ),
         // 点踩
         if ((galleryComment.canVote ?? false) && !simple)
           CupertinoButton(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            minSize: 0,
             child: FaIcon(
               galleryComment.vote! < 0
                   ? FontAwesomeIcons.solidThumbsDown
@@ -394,12 +391,11 @@ class _CommentTail extends StatelessWidget {
               vibrateUtil.light();
               logger.i('vote down ${galleryComment.id}');
               commentController.commitVoteDown(galleryComment.id!);
-            },
+            }, minimumSize: Size(0, 0),
           ),
         if (showRepty && !simple && commentController.isLogin)
           CupertinoButton(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            minSize: 0,
             child: FaIcon(
               // FontAwesomeIcons.reply,
               // FontAwesomeIcons.at,
@@ -412,7 +408,7 @@ class _CommentTail extends StatelessWidget {
               logger.i('rep ${galleryComment.id}');
               commentController.reptyComment(
                   reptyCommentId: galleryComment.id!);
-            },
+            }, minimumSize: Size(0, 0),
           ),
       ],
     );
@@ -673,7 +669,6 @@ class _TranslateButtonState extends State<TranslateButton> {
 
     return CupertinoButton(
       padding: widget.padding,
-      minSize: 0,
       child: translating ? _loadIcon : _icon,
       onPressed: () async {
         vibrateUtil.light();
@@ -685,7 +680,7 @@ class _TranslateButtonState extends State<TranslateButton> {
         setState(() {
           translating = false;
         });
-      },
+      }, minimumSize: Size(0, 0),
     );
   }
 }

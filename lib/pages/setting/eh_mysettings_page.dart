@@ -33,17 +33,15 @@ class EhMySettingsPage extends GetView<EhMySettingsController> {
               children: <Widget>[
                 CupertinoButton(
                   padding: const EdgeInsets.all(0),
-                  minSize: 40,
                   child: const FaIcon(FontAwesomeIcons.earthAmericas,
                     size: 22,
                   ),
                   onPressed: () async {
                     Get.to(() => const InWebMySetting());
-                  },
+                  }, minimumSize: Size(40, 40),
                 ),
                 CupertinoButton(
                   padding: const EdgeInsets.all(0),
-                  minSize: 40,
                   child: const FaIcon(FontAwesomeIcons.circleCheck,
                     size: 22,
                   ),
@@ -51,7 +49,7 @@ class EhMySettingsPage extends GetView<EhMySettingsController> {
                     // 保存配置
                     controller.printParam();
                     await controller.applyProfile();
-                  },
+                  }, minimumSize: Size(40, 40),
                 ),
               ],
             )),
@@ -75,7 +73,7 @@ class EhMySettingsPage extends GetView<EhMySettingsController> {
                             BoxShadow(
                               color: CupertinoDynamicColor.resolve(
                                       CupertinoColors.systemGrey, Get.context!)
-                                  .withOpacity(0.1),
+                                  .withValues(alpha: 0.1),
                               offset: const Offset(0, 5),
                               blurRadius: 10, //阴影模糊程度
                               spreadRadius: 3, //阴影扩散程度

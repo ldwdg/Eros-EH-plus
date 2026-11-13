@@ -82,7 +82,7 @@ class _UserTagItemState extends State<UserTagItem> {
   Widget build(BuildContext context) {
     final Color color =
         CupertinoDynamicColor.resolve(ehTheme.itemBackgroundColor!, context);
-    if (_pBackgroundColor?.value != color.value) {
+    if (_pBackgroundColor?.toARGB32() != color.toARGB32()) {
       _color = color;
       _pBackgroundColor = color;
     }
@@ -105,7 +105,7 @@ class _UserTagItemState extends State<UserTagItem> {
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: widget.tagColor ?? Colors.white.withOpacity(0.5),
+                      color: widget.tagColor ?? Colors.white.withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         width: 0.5,

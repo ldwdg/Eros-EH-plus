@@ -85,7 +85,7 @@ class GalleryItemFlow extends StatelessWidget {
                   borderRadius: BorderRadius.circular(kRadius),
                   child: Container(
                     foregroundDecoration: RotatedCornerDecoration.withColor(
-                      color: _colorCategory.withOpacity(0.8),
+                      color: _colorCategory.withValues(alpha: 0.8),
                       // labelInsets:
                       //     const LabelInsets(baselineShift: 0.2, start: 2),
                       // geometry: const BadgeGeometry(

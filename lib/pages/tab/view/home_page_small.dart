@@ -13,7 +13,7 @@ class TabHomeSmall extends GetView<TabHomeController> {
           controller: controller.tabController,
           tabBar: CupertinoTabBar(
             backgroundColor: kEnableImpeller
-                ? CupertinoTheme.of(context).barBackgroundColor.withOpacity(1)
+                ? CupertinoTheme.of(context).barBackgroundColor.withValues(alpha: 1)
                 : null,
             items: controller.listBottomNavigationBarItem,
             onTap: controller.onTap,

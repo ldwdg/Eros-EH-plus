@@ -118,7 +118,6 @@ class LoginPage extends GetView<LoginController> {
                       // web登陆
                       if (GetPlatform.isMobile)
                         CupertinoButton(
-                          minSize: 50,
                           padding: const EdgeInsets.all(20),
                           onPressed: controller.handOnWeblogin,
                           child: const Column(
@@ -130,11 +129,10 @@ class LoginPage extends GetView<LoginController> {
                               Text('Web',
                                   textScaler: const TextScaler.linear(0.8)),
                             ],
-                          ),
+                          ), minimumSize: Size(50, 50),
                         ),
                       // cookie登陆
                       CupertinoButton(
-                        minSize: 50,
                         padding: const EdgeInsets.all(20),
                         onPressed: controller.hanOnCookieLogin,
                         child: const Column(
@@ -146,7 +144,7 @@ class LoginPage extends GetView<LoginController> {
                             Text('Cookie',
                                 textScaler: const TextScaler.linear(0.8)),
                           ],
-                        ),
+                        ), minimumSize: Size(50, 50),
                       ),
                     ],
                   ).paddingSymmetric(vertical: 30),

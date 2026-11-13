@@ -323,7 +323,6 @@ class _GallerySliverPageState extends State<GallerySliverPage> {
               StatefulBuilder(builder: (context, setState) {
                 return CupertinoButton(
                   padding: const EdgeInsets.all(0),
-                  minSize: 40,
                   child: isRefresh
                       ? const CupertinoActivityIndicator(
                           radius: 12,
@@ -345,23 +344,21 @@ class _GallerySliverPageState extends State<GallerySliverPage> {
                         isRefresh = false;
                       });
                     }
-                  },
+                  }, minimumSize: Size(40, 40),
                 );
               }),
 
             CupertinoButton(
               padding: const EdgeInsets.all(0),
-              minSize: 40,
               child: const MouseRegionClick(
                 child: Icon(CupertinoIcons.tags, size: 24),
               ),
               onPressed: () {
                 _controller.addTag();
-              },
+              }, minimumSize: Size(40, 40),
             ),
             CupertinoButton(
               padding: const EdgeInsets.all(0),
-              minSize: 38,
               child: const MouseRegionClick(
                 child: Icon(CupertinoIcons.share, size: 26),
               ),
@@ -373,7 +370,7 @@ class _GallerySliverPageState extends State<GallerySliverPage> {
                     '${Api.getBaseUrl()}/g/${provider.gid}/${provider.token}';
                 logger.d('share $_url');
                 Share.share(_url);
-              },
+              }, minimumSize: Size(38, 38),
             ),
           ],
         );

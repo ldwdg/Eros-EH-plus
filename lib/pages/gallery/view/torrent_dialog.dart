@@ -160,7 +160,6 @@ class TorrentItem extends StatelessWidget {
                     primaryColor: CupertinoColors.systemRed),
                 child: CupertinoButton(
                   padding: const EdgeInsets.only(left: 0),
-                  minSize: 30,
                   child: const FaIcon(FontAwesomeIcons.magnet,
                     size: 16,
                   ),
@@ -169,7 +168,7 @@ class TorrentItem extends StatelessWidget {
                         'magnet:?xt=urn:btih:${torrent.hash}';
                     logger.t(_magnet);
                     Share.share(_magnet);
-                  },
+                  }, minimumSize: Size(30, 30),
                 ),
               )
             ],

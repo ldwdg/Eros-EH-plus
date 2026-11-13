@@ -58,6 +58,7 @@ class _GalleryPageState extends State<GalleryPage> {
   @override
   Widget build(BuildContext context) {
     Widget body = CustomScrollView(
+      // 当前 Flutter 版本无 ScrollCacheExtent；cacheExtent 仍可用（弃用提示可忽略）
       cacheExtent: 1000,
       controller: GetPlatform.isDesktop ? _controller.scrollController : null,
       slivers: [
@@ -160,7 +161,6 @@ class GalleryNavigationBar extends StatelessWidget {
               StatefulBuilder(builder: (context, setState) {
                 return CupertinoButton(
                   padding: const EdgeInsets.all(0),
-                  minSize: 40,
                   child: isRefresh
                       ? const CupertinoActivityIndicator(
                           radius: 12,
@@ -182,23 +182,21 @@ class GalleryNavigationBar extends StatelessWidget {
                         isRefresh = false;
                       });
                     }
-                  },
+                  }, minimumSize: Size(40, 40),
                 );
               }),
 
             CupertinoButton(
               padding: const EdgeInsets.all(0),
-              minSize: 38,
               child: const MouseRegionClick(
                 child: Icon(CupertinoIcons.tag_circle, size: 28),
               ),
               onPressed: () {
                 controller.addTag();
-              },
+              }, minimumSize: Size(38, 38),
             ),
             CupertinoButton(
               padding: const EdgeInsets.only(bottom: 4),
-              minSize: 38,
               child: const MouseRegionClick(
                 child: Icon(CupertinoIcons.share, size: 26),
               ),
@@ -210,7 +208,7 @@ class GalleryNavigationBar extends StatelessWidget {
                     '${Api.getBaseUrl()}/g/${provider.gid}/${provider.token}';
                 logger.d('share $_url');
                 Share.share(_url);
-              },
+              }, minimumSize: Size(38, 38),
             ),
           ],
         );

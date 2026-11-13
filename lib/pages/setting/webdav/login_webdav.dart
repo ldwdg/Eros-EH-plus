@@ -109,7 +109,6 @@ class LoginWebDAV extends GetView<WebdavController> {
                     children: [
                       Obx(() {
                         return CupertinoButton(
-                          minSize: 100,
                           borderRadius:
                               const BorderRadius.all(Radius.circular(30.0)),
                           padding: const EdgeInsets.symmetric(
@@ -121,11 +120,10 @@ class LoginWebDAV extends GetView<WebdavController> {
                           },
                           child: controller.testingConnect
                               ? const CupertinoActivityIndicator()
-                              : Text('Test'),
+                              : Text('Test'), minimumSize: Size(100, 100),
                         );
                       }),
                       CupertinoButton(
-                        minSize: 100,
                         borderRadius:
                             const BorderRadius.all(Radius.circular(30.0)),
                         padding: const EdgeInsets.symmetric(
@@ -142,7 +140,7 @@ class LoginWebDAV extends GetView<WebdavController> {
                               },
                         child: controller.loadingLogin
                             ? const CupertinoActivityIndicator()
-                            : Text(L10n.of(context).login),
+                            : Text(L10n.of(context).login), minimumSize: Size(100, 100),
                       ),
                     ],
                   ),

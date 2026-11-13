@@ -232,12 +232,11 @@ class _CommentPageState extends State<CommentPage>
               CupertinoButton(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                minSize: 0,
                 onPressed: controller.pressCancel,
                 child: const FaIcon(FontAwesomeIcons.xmark,
                   // FontAwesomeIcons.solidCheckCircle,
                   size: 24,
-                ),
+                ), minimumSize: Size(0, 0),
               )
             ],
           );
@@ -260,7 +259,7 @@ class _CommentPageState extends State<CommentPage>
           border: _kDefaultEditBorder,
           color: CupertinoDynamicColor.resolve(
                   ehTheme.themeData!.barBackgroundColor, context)
-              .withOpacity(1),
+              .withValues(alpha: 1),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -301,7 +300,6 @@ class _CommentPageState extends State<CommentPage>
                   child: CupertinoButton(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
-                    minSize: 0,
                     onPressed: controller.pressSend,
                     child: Obx(
                       () => AnimatedSwitcher(
@@ -322,7 +320,7 @@ class _CommentPageState extends State<CommentPage>
                                 size: 34,
                               ),
                       ),
-                    ),
+                    ), minimumSize: Size(0, 0),
                   ),
                 ),
               ],

@@ -23,17 +23,15 @@ class EhMyTagsPage extends GetView<EhMyTagsController> {
           children: <Widget>[
             CupertinoButton(
               padding: const EdgeInsets.all(0),
-              minSize: 40,
               child: const FaIcon(FontAwesomeIcons.earthAmericas,
                 size: 22,
               ),
               onPressed: () async {
                 Get.to(() => InWebMyTags());
-              },
+              }, minimumSize: Size(40, 40),
             ),
             CupertinoButton(
               padding: const EdgeInsets.all(0),
-              minSize: 40,
               child: const Icon(
                 // FontAwesomeIcons.plus,
                 CupertinoIcons.plus_circle,
@@ -52,7 +50,7 @@ class EhMyTagsPage extends GetView<EhMyTagsController> {
                 if (newName != null && newName.isNotEmpty) {
                   controller.crtNewTagset(name: newName);
                 }
-              },
+              }, minimumSize: Size(40, 40),
             ),
           ],
         ),

@@ -33,7 +33,7 @@ class _UserItem extends State<UserItem> {
   Widget build(BuildContext context) {
     final Color color =
         CupertinoDynamicColor.resolve(ehTheme.itemBackgroundColor!, context);
-    if (_pBackgroundColor?.value != color.value) {
+    if (_pBackgroundColor?.toARGB32() != color.toARGB32()) {
       _color = color;
       _pBackgroundColor = color;
     }

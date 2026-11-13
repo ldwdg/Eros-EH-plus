@@ -51,14 +51,13 @@ class CustomHostsPage extends StatelessWidget {
 
   Widget _buildListBtns(BuildContext context) {
     return CupertinoButton(
-        minSize: 40,
         padding: const EdgeInsets.only(right: 20),
         child: const FaIcon(FontAwesomeIcons.plusCircle,
           size: 20,
         ),
         onPressed: () {
           showCustomHostEditer(context);
-        });
+        }, minimumSize: Size(40, 40));
   }
 }
 

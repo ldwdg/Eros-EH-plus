@@ -18,12 +18,11 @@ class LogPage extends GetView<LogService> {
         trailing: CupertinoButton(
           // 清除按钮
           padding: const EdgeInsets.all(0),
-          minSize: 40,
           onPressed: controller.removeAll,
           child: const Icon(
             CupertinoIcons.trash,
             size: 24,
-          ),
+          ), minimumSize: Size(40, 40),
         ),
       ),
       child: CustomScrollView(

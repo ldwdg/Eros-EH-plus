@@ -57,7 +57,6 @@ class _HistoryTabState extends State<HistoryTab> {
             StatefulBuilder(builder: (context, setState) {
               return CupertinoButton(
                 padding: const EdgeInsets.all(0),
-                minSize: 40,
                 child: isRefresh
                     ? const CupertinoActivityIndicator(
                         radius: 10,
@@ -77,19 +76,18 @@ class _HistoryTabState extends State<HistoryTab> {
                       isRefresh = false;
                     });
                   }
-                },
+                }, minimumSize: Size(40, 40),
               );
             }),
           // 清除按钮
           CupertinoButton(
-            minSize: 40,
             padding: const EdgeInsets.all(0),
             child: const FaIcon(FontAwesomeIcons.solidTrashCan,
               size: 20,
             ),
             onPressed: () {
               controller.clearHistory();
-            },
+            }, minimumSize: Size(40, 40),
           ),
         ],
       ),

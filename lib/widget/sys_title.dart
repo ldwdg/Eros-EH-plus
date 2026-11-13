@@ -64,7 +64,7 @@ class _SysTitleState extends State<SysTitle> {
     SystemChrome.setApplicationSwitcherDescription(
       ApplicationSwitcherDescription(
         label: widget.title,
-        primaryColor: widget.color?.value,
+        primaryColor: widget.color?.toARGB32(),
       ),
     );
     return widget.child;

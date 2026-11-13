@@ -85,7 +85,6 @@ class LoginCookie extends GetView<LoginController> {
                     ),
                   ),
                   CupertinoButton(
-                    minSize: 50,
                     padding: const EdgeInsets.all(20),
                     onPressed: controller.readCookieFromClipboard,
                     child: Column(
@@ -96,7 +95,7 @@ class LoginCookie extends GetView<LoginController> {
                         Text(L10n.of(context).read_from_clipboard,
                             textScaler: const TextScaler.linear(0.8)),
                       ],
-                    ),
+                    ), minimumSize: Size(50, 50),
                   ),
                 ],
               ),

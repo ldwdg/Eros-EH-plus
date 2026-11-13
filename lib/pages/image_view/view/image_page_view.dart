@@ -46,7 +46,7 @@ class ImagePageView extends GetView<ViewExtController> {
         opacity = offset.distance /
             (Offset(pageSize.width, pageSize.height).distance / 2.0);
         return CupertinoColors.systemBackground.darkColor
-            .withOpacity(min(1.0, max(1.0 - opacity, 0.0)));
+            .withValues(alpha: min(1.0, max(1.0 - opacity, 0.0)));
       },
       onSlidingPage: (ExtendedImageSlidePageState state) {
         if (controller.vState.showBar) {

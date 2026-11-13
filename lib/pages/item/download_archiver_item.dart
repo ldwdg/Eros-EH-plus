@@ -74,7 +74,7 @@ class DownloadArchiverItem extends GetView<DownloadViewController> {
                 BoxShadow(
                   color: CupertinoDynamicColor.resolve(
                           CupertinoColors.systemGrey5, Get.context!)
-                      .withOpacity(0.7),
+                      .withValues(alpha: 0.7),
                   blurRadius: 10,
                   spreadRadius: 1,
                   offset: const Offset(2, 2),

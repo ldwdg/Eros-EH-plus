@@ -258,7 +258,7 @@ class _ExtendedImageRectState extends State<ExtendedImageRect> {
                     child: Container(
                       alignment: Alignment.center,
                       color: CupertinoDynamicColor.resolve(
-                          CupertinoColors.systemGrey5.withOpacity(0.2),
+                          CupertinoColors.systemGrey5.withValues(alpha: 0.2),
                           context),
                       child: const CupertinoActivityIndicator(),
                     ),
@@ -276,7 +276,7 @@ class _ExtendedImageRectState extends State<ExtendedImageRect> {
             child: Container(
               alignment: Alignment.center,
               color: CupertinoDynamicColor.resolve(
-                  CupertinoColors.systemGrey5.withOpacity(0.2), context),
+                  CupertinoColors.systemGrey5.withValues(alpha: 0.2), context),
               child: const CupertinoActivityIndicator(),
             ),
           );

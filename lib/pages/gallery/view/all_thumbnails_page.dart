@@ -49,7 +49,6 @@ class _AllThumbnailsPageState extends State<AllThumbnailsPage> {
                       if (logic.currPage > 1)
                         CupertinoButton(
                           padding: const EdgeInsets.all(0),
-                          minSize: 38,
                           child: const Icon(
                             CupertinoIcons.arrow_up_circle,
                             size: 26,
@@ -57,11 +56,10 @@ class _AllThumbnailsPageState extends State<AllThumbnailsPage> {
                           onPressed: () async {
                             // controller.fetchPriviewsPrevious();
                             logic.fetchThumbnailsFromPage(1);
-                          },
+                          }, minimumSize: Size(38, 38),
                         ),
                       CupertinoButton(
                         padding: const EdgeInsets.all(0),
-                        minSize: 38,
                         child: const Icon(
                           CupertinoIcons.arrow_uturn_down_circle,
                           size: 26,
@@ -73,7 +71,7 @@ class _AllThumbnailsPageState extends State<AllThumbnailsPage> {
                             controller.scrollToTop();
                             controller.fetchThumbnailsFromPage(rult);
                           }
-                        },
+                        }, minimumSize: Size(38, 38),
                       ),
                     ],
                   );

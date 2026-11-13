@@ -41,7 +41,6 @@ class _AddTagPageState extends State<AddTagPage> {
           middle: Text(L10n.of(context).add_tags),
           previousPageTitle: L10n.of(context).cancel,
           trailing: CupertinoButton(
-            minSize: 40,
             padding: const EdgeInsets.only(left: 4),
             child: Text(L10n.of(context).done),
             onPressed: () {
@@ -49,7 +48,7 @@ class _AddTagPageState extends State<AddTagPage> {
                 result: controller.tags,
                 id: isLayoutLarge ? 2 : null,
               );
-            },
+            }, minimumSize: Size(40, 40),
           ),
         ),
         child: SafeArea(

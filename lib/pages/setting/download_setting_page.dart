@@ -65,10 +65,9 @@ class DownloadSetting extends StatelessWidget {
                     subtitle: Text(path, maxLines: 10),
                     trailing: CupertinoButton(
                       padding: const EdgeInsets.all(0),
-                      minSize: 14,
                       child: const Icon(CupertinoIcons.refresh),
                       onPressed: () async => ehSettingService.downloadLocatino =
-                          await defDownloadPath,
+                          await defDownloadPath, minimumSize: Size(14, 14),
                     ),
                     onTap: () async {
                       if (GetPlatform.isAndroid) {

@@ -72,7 +72,6 @@ class _ToplistTabState extends State<ToplistTab> {
             StatefulBuilder(builder: (context, setState) {
               return CupertinoButton(
                 padding: const EdgeInsets.all(0),
-                minSize: 40,
                 child: isRefresh
                     ? const CupertinoActivityIndicator(
                         radius: 10,
@@ -92,12 +91,11 @@ class _ToplistTabState extends State<ToplistTab> {
                       isRefresh = false;
                     });
                   }
-                },
+                }, minimumSize: Size(40, 40),
               );
             }),
           CupertinoButton(
             padding: const EdgeInsets.all(0.0),
-            minSize: 40,
             child: const Stack(
               alignment: Alignment.centerRight,
               // mainAxisSize: MainAxisSize.min,
@@ -108,12 +106,11 @@ class _ToplistTabState extends State<ToplistTab> {
                 ),
               ],
             ),
-            onPressed: () => controller.setToplist(context),
+            onPressed: () => controller.setToplist(context), minimumSize: Size(40, 40),
           ),
           Obx(() {
             if (controller.afterJump) {
               return CupertinoButton(
-                minSize: 40,
                 padding: const EdgeInsets.all(0),
                 child: const Icon(
                   CupertinoIcons.arrow_up_circle,
@@ -121,7 +118,7 @@ class _ToplistTabState extends State<ToplistTab> {
                 ),
                 onPressed: () {
                   controller.jumpToTop();
-                },
+                }, minimumSize: Size(40, 40),
               );
             } else {
               return const SizedBox();
@@ -130,7 +127,6 @@ class _ToplistTabState extends State<ToplistTab> {
           Obx(() {
             if (controller.next.isNotEmpty) {
               return CupertinoButton(
-                minSize: 40,
                 padding: const EdgeInsets.all(0),
                 child: const Icon(
                   CupertinoIcons.arrow_uturn_down_circle,
@@ -138,7 +134,7 @@ class _ToplistTabState extends State<ToplistTab> {
                 ),
                 onPressed: () {
                   controller.showJumpDialog(context);
-                },
+                }, minimumSize: Size(40, 40),
               );
             } else {
               return const SizedBox.shrink();

@@ -157,7 +157,7 @@ class _SelectorSettingItemState extends State<SelectorSettingItem> {
   Widget build(BuildContext context) {
     final Color color =
         CupertinoDynamicColor.resolve(ehTheme.itemBackgroundColor!, context);
-    if (_pBackgroundColor.value != color.value) {
+    if (_pBackgroundColor.toARGB32() != color.toARGB32()) {
       _color = color;
       _pBackgroundColor = color;
     }
@@ -479,7 +479,7 @@ class _TextSwitchItemState extends State<TextSwitchItem> {
 
     final Color color =
         CupertinoDynamicColor.resolve(ehTheme.itemBackgroundColor!, context);
-    if (_pBackgroundColor.value != color.value) {
+    if (_pBackgroundColor.toARGB32() != color.toARGB32()) {
       _color = color;
       _pBackgroundColor = color;
     }
@@ -615,7 +615,7 @@ class _TextItemState extends State<TextItem> {
   Widget build(BuildContext context) {
     final Color color =
         CupertinoDynamicColor.resolve(ehTheme.itemBackgroundColor!, context);
-    if (_pBackgroundColor?.value != color.value) {
+    if (_pBackgroundColor?.toARGB32() != color.toARGB32()) {
       _color = color;
       _pBackgroundColor = color;
     }

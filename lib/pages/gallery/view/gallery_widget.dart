@@ -444,7 +444,6 @@ class MorePreviewButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-      minSize: 0,
       padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
       child: Text(
         hasMorePreview
@@ -457,7 +456,7 @@ class MorePreviewButton extends StatelessWidget {
           EHRoutes.galleryAllThumbnails,
           id: isLayoutLarge ? 2 : null,
         );
-      },
+      }, minimumSize: Size(0, 0),
     );
   }
 }

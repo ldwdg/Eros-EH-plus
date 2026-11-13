@@ -24,7 +24,7 @@ void showToast(
           BoxShadow(
             color: CupertinoDynamicColor.resolve(
                     CupertinoColors.darkBackgroundGray, Get.context!)
-                .withOpacity(0.16),
+                .withValues(alpha: 0.16),
             offset: const Offset(0, 8),
             blurRadius: 20, //阴影模糊程度
             spreadRadius: 4, //阴影扩散程度
@@ -159,7 +159,7 @@ void showActionToast(String msg, {IconData? icon, VoidCallback? onPressed}) {
           BoxShadow(
             color: CupertinoDynamicColor.resolve(
                     CupertinoColors.darkBackgroundGray, Get.context!)
-                .withOpacity(0.16),
+                .withValues(alpha: 0.16),
             offset: const Offset(0, 0),
             blurRadius: 20, //阴影模糊程度
             spreadRadius: 4, //阴影扩散程度
@@ -182,7 +182,6 @@ void showActionToast(String msg, {IconData? icon, VoidCallback? onPressed}) {
                     softWrap: true,
                   ),
                   CupertinoButton(
-                    minSize: 20,
                     child: Icon(
                       icon,
                       size: 18,
@@ -191,7 +190,7 @@ void showActionToast(String msg, {IconData? icon, VoidCallback? onPressed}) {
                     onPressed: () {
                       SmartDialog.dismiss();
                       onPressed?.call();
-                    },
+                    }, minimumSize: Size(20, 20),
                   ),
                 ],
               ),

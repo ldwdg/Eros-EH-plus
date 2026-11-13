@@ -192,7 +192,7 @@ class DownloadGalleryItem extends GetView<DownloadViewController> {
                 BoxShadow(
                   color: CupertinoDynamicColor.resolve(
                           CupertinoColors.systemGrey5, Get.context!)
-                      .withOpacity(0.9),
+                      .withValues(alpha: 0.9),
                   blurRadius: 10,
                   spreadRadius: 1.0,
                   offset: const Offset(2, 2),
@@ -462,13 +462,12 @@ class DownloadGalleryItem extends GetView<DownloadViewController> {
         data: const CupertinoThemeData(primaryColor: CupertinoColors.systemRed),
         child: CupertinoButton(
           padding: buttonPadding,
-          minSize: minSize,
           child: const FaIcon(FontAwesomeIcons.pause,
             size: iconSize,
           ),
           onPressed: () {
             controller.pauseGalleryDownload(_taskInfo?.gid);
-          },
+          }, minimumSize: Size(minSize, minSize),
         ),
       ),
       // 完成时 按下无动作
@@ -477,11 +476,10 @@ class DownloadGalleryItem extends GetView<DownloadViewController> {
             const CupertinoThemeData(primaryColor: CupertinoColors.activeBlue),
         child: CupertinoButton(
           padding: buttonPadding,
-          minSize: minSize,
           child: const FaIcon(FontAwesomeIcons.check,
             size: iconSize,
           ),
-          onPressed: () {},
+          onPressed: () {}, minimumSize: Size(minSize, minSize),
         ),
       ),
       // 暂停时 显示继续按钮。按下恢复任务
@@ -490,36 +488,33 @@ class DownloadGalleryItem extends GetView<DownloadViewController> {
             const CupertinoThemeData(primaryColor: CupertinoColors.activeGreen),
         child: CupertinoButton(
           padding: buttonPadding,
-          minSize: minSize,
           child: const FaIcon(FontAwesomeIcons.play,
             size: iconSize,
           ),
           onPressed: () {
             controller.resumeGalleryDownload(_taskInfo?.gid);
-          },
+          }, minimumSize: Size(minSize, minSize),
         ),
       ),
       // 失败时 显示重试按钮。按下重试任务
       TaskStatus.failed: CupertinoButton(
         padding: buttonPadding,
-        minSize: minSize,
         child: const FaIcon(FontAwesomeIcons.play,
           size: iconSize,
         ),
         onPressed: () {
           controller.retryArchiverDownload(galleryTask.gid);
-        },
+        }, minimumSize: Size(minSize, minSize),
       ),
       // 取消状态 显示重试按钮。按下重试任务
       TaskStatus.canceled: CupertinoButton(
         padding: buttonPadding,
-        minSize: minSize,
         child: const FaIcon(FontAwesomeIcons.redo,
           size: iconSize,
         ),
         onPressed: () {
           controller.retryArchiverDownload(galleryTask.gid);
-        },
+        }, minimumSize: Size(minSize, minSize),
       ).paddingSymmetric(),
       TaskStatus.enqueued: Container(
         width: minSize,

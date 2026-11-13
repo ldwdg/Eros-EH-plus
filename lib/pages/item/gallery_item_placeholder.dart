@@ -22,7 +22,7 @@ class GalleryItemPlaceHolder extends StatelessWidget {
                 BoxShadow(
                   color: CupertinoDynamicColor.resolve(
                           CupertinoColors.systemGrey5, Get.context!)
-                      .withOpacity(1.0),
+                      .withValues(alpha: 1.0),
                   blurRadius: 10,
                   // spreadRadius: 2,
                   offset: const Offset(2, 4),

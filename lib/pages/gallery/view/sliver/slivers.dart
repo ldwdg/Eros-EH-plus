@@ -414,14 +414,13 @@ class _ChapterBoxState extends State<ChapterBox> {
       children: [
         _animate,
         CupertinoButton(
-          minSize: 0,
           padding: const EdgeInsets.all(0),
           child: Center(child: _icon),
           onPressed: () {
             setState(() {
               showFull = !showFull;
             });
-          },
+          }, minimumSize: Size(0, 0),
         ),
       ],
     );
@@ -538,14 +537,13 @@ class _ChapterGridViewState extends State<ChapterGridView> {
         children: [
           _animate,
           CupertinoButton(
-            minSize: 0,
             padding: const EdgeInsets.all(0),
             child: Center(child: _icon),
             onPressed: () {
               setState(() {
                 showFull = !showFull;
               });
-            },
+            }, minimumSize: Size(0, 0),
           ),
         ],
       );
@@ -687,7 +685,7 @@ class ChapterItemFlex extends StatelessWidget {
           BoxShadow(
             color: CupertinoDynamicColor.resolve(
                     CupertinoColors.darkBackgroundGray, context)
-                .withOpacity(0.4),
+                .withValues(alpha: 0.4),
             offset: const Offset(0, 0),
             blurRadius: 20, //阴影模糊程度
             spreadRadius: 4, //阴影扩散程度

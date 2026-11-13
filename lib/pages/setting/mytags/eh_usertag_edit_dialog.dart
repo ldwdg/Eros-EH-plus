@@ -59,7 +59,7 @@ class _EhUserTagEditDialogState extends State<EhUserTagEditDialog> {
     colorTextEditingController.addListener(() {
       final colorHex = colorTextEditingController.text.trim();
       final colorInput = ColorsUtil.hexStringToColor(colorHex);
-      if (colorInput != null && colorInput.value != screenPickerColor.value) {
+      if (colorInput != null && colorInput.toARGB32() != screenPickerColor.toARGB32()) {
         setState(() {
           screenPickerColor = colorInput;
         });
@@ -172,7 +172,7 @@ class _EhUserTagEditDialogState extends State<EhUserTagEditDialog> {
               Text(L10n.of(context).tag_dialog_Hide),
               const Spacer(),
               CupertinoSwitch(
-                  activeColor: CupertinoColors.destructiveRed,
+                  activeTrackColor: CupertinoColors.destructiveRed,
                   value: _hide,
                   onChanged: (val) {
                     if (_watch && val) {

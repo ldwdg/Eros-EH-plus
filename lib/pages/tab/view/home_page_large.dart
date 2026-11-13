@@ -122,7 +122,7 @@ class _SideControllerbarState extends State<SideControllerbar> {
       decoration: BoxDecoration(
         color:
             CupertinoDynamicColor.resolve(CupertinoColors.systemGrey, context)
-                .withOpacity(0.7),
+                .withValues(alpha: 0.7),
         borderRadius: BorderRadius.circular(dragging ? 5.0 : 1.5),
       ),
       margin: EdgeInsets.only(

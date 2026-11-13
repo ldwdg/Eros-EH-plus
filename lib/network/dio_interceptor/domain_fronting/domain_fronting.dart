@@ -141,7 +141,7 @@ class DomainFrontingInterceptorRequest extends Interceptor {
       try {
         ip = await df.lookup(host);
       } catch (error, stackTrace) {
-        final err = DioError(
+        final err = DioException(
             requestOptions: options, error: error, stackTrace: stackTrace);
         handler.reject(err, true);
         return;
@@ -151,7 +151,7 @@ class DomainFrontingInterceptorRequest extends Interceptor {
           handler.next(options);
           return;
         }
-        final err = DioError(
+        final err = DioException(
             requestOptions: options,
             error: '[DomainFronting] Unable to get IP address',
             stackTrace: StackTrace.current);

@@ -196,7 +196,7 @@ class _CoverWidget extends StatelessWidget {
           borderRadius: _borderRadius,
           child: Container(
             foregroundDecoration: RotatedCornerDecoration.withColor(
-              color: colorCategory.withOpacity(0.8),
+              color: colorCategory.withValues(alpha: 0.8),
               spanBaselineShift: 0.5,
               spanHorizontalOffset: 2,
               badgeSize: const Size(kCategoryWidth, kCategoryHeight),

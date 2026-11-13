@@ -58,7 +58,7 @@ class _EhUserTagsPageState extends State<EhUserTagsPage> {
                           BoxShadow(
                             color: CupertinoDynamicColor.resolve(
                                     CupertinoColors.systemGrey, Get.context!)
-                                .withOpacity(0.1),
+                                .withValues(alpha: 0.1),
                             offset: const Offset(0, 5),
                             blurRadius: 10, //阴影模糊程度
                             spreadRadius: 3, //阴影扩散程度
@@ -97,7 +97,6 @@ class _EhUserTagsPageState extends State<EhUserTagsPage> {
             ),
             secondChild: CupertinoButton(
               padding: const EdgeInsets.all(0),
-              minSize: 40,
               child: const Icon(
                 CupertinoIcons.trash,
                 size: 26,
@@ -112,7 +111,7 @@ class _EhUserTagsPageState extends State<EhUserTagsPage> {
                     }
                   },
                 );
-              },
+              }, minimumSize: Size(40, 40),
             ),
             crossFadeState: controller.canDelete
                 ? CrossFadeState.showSecond
@@ -142,7 +141,6 @@ class _EhUserTagsPageState extends State<EhUserTagsPage> {
         //   ),
         CupertinoButton(
           padding: const EdgeInsets.all(0),
-          minSize: 40,
           child: const Icon(
             // FontAwesomeIcons.penRuler,
             CupertinoIcons.pencil_ellipsis_rectangle,
@@ -162,17 +160,16 @@ class _EhUserTagsPageState extends State<EhUserTagsPage> {
             if (newName != null && newName.isNotEmpty && newName != currName) {
               controller.renameTagSet(newName: newName);
             }
-          },
+          }, minimumSize: Size(40, 40),
         ),
         CupertinoButton(
           padding: const EdgeInsets.all(0),
-          minSize: 40,
           child: const Icon(
             // FontAwesomeIcons.magnifyingGlass,
             CupertinoIcons.search,
             size: 28,
           ),
-          onPressed: () => controller.isSearchUserTags = true,
+          onPressed: () => controller.isSearchUserTags = true, minimumSize: Size(40, 40),
         ),
       ],
     );
@@ -401,11 +398,11 @@ class _ListViewEhMyTagsState extends State<ListViewEhMyTags> {
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: tagColor ??
-            CupertinoColors.systemGroupedBackground.withOpacity(0.5),
+            CupertinoColors.systemGroupedBackground.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           width: 2,
-          color: CupertinoColors.systemGrey.withOpacity(0.5),
+          color: CupertinoColors.systemGrey.withValues(alpha: 0.5),
         ),
       ),
       child: Text(

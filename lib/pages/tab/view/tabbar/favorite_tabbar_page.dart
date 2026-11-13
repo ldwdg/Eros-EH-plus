@@ -150,7 +150,7 @@ class _FavoriteTabTabBarPageState extends State<FavoriteTabTabBarPage> {
     return Obx(() {
       return CupertinoNavigationBar(
         backgroundColor: kEnableImpeller
-            ? CupertinoTheme.of(context).barBackgroundColor.withOpacity(1)
+            ? CupertinoTheme.of(context).barBackgroundColor.withValues(alpha: 1)
             : null,
         transitionBetweenRoutes: false,
         border: null,
@@ -195,7 +195,6 @@ class _FavoriteTabTabBarPageState extends State<FavoriteTabTabBarPage> {
             children: [
               // 搜索按钮
               CupertinoButton(
-                minSize: 40,
                 padding: const EdgeInsets.all(0),
                 child: const Icon(
                   // FontAwesomeIcons.magnifyingGlass,
@@ -209,11 +208,10 @@ class _FavoriteTabTabBarPageState extends State<FavoriteTabTabBarPage> {
                   NavigatorUtil.goSearchPage(
                       searchType: SearchType.favorite,
                       fromTabItem: fromTabItem);
-                },
+                }, minimumSize: Size(40, 40),
               ),
               CupertinoButton(
                 padding: const EdgeInsets.all(0.0),
-                minSize: 40,
                 child: Stack(
                   alignment: Alignment.centerRight,
                   // mainAxisSize: MainAxisSize.min,
@@ -238,12 +236,11 @@ class _FavoriteTabTabBarPageState extends State<FavoriteTabTabBarPage> {
                     ),
                   ],
                 ),
-                onPressed: () => controller.setOrder(context),
+                onPressed: () => controller.setOrder(context), minimumSize: Size(40, 40),
               ),
               Obx(() {
                 if (controller.afterJump) {
                   return CupertinoButton(
-                    minSize: 40,
                     padding: const EdgeInsets.all(0),
                     child: const Icon(
                       CupertinoIcons.arrow_up_circle,
@@ -251,14 +248,13 @@ class _FavoriteTabTabBarPageState extends State<FavoriteTabTabBarPage> {
                     ),
                     onPressed: () {
                       controller.jumpToTop();
-                    },
+                    }, minimumSize: Size(40, 40),
                   );
                 } else {
                   return const SizedBox();
                 }
               }),
               CupertinoButton(
-                minSize: 40,
                 padding: const EdgeInsets.all(0),
                 child: const Icon(
                   CupertinoIcons.arrow_uturn_down_circle,
@@ -266,7 +262,7 @@ class _FavoriteTabTabBarPageState extends State<FavoriteTabTabBarPage> {
                 ),
                 onPressed: () {
                   controller.showJumpDialog(context);
-                },
+                }, minimumSize: Size(40, 40),
               ),
               // PageSelectorButton(controller: controller),
             ],
@@ -352,7 +348,6 @@ class FavoriteTabBar extends StatelessWidget {
                             return StatefulBuilder(
                                 builder: (context, setState) {
                               return CupertinoButton(
-                                minSize: 40,
                                 padding: const EdgeInsets.all(0),
                                 child: isRefresh
                                     ? const CupertinoActivityIndicator(
@@ -371,13 +366,12 @@ class FavoriteTabBar extends StatelessWidget {
                                       isRefresh = false;
                                     });
                                   }
-                                },
+                                }, minimumSize: Size(40, 40),
                               );
                             });
                           }),
                         if (controller.showBarsBtn)
                           CupertinoButton(
-                            minSize: 40,
                             padding: const EdgeInsets.all(0),
                             child: const FaIcon(FontAwesomeIcons.bars,
                               size: 20,
@@ -393,7 +387,7 @@ class FavoriteTabBar extends StatelessWidget {
                                     (element) => element.favId == result.favId);
                                 pageController.jumpToPage(index);
                               }
-                            },
+                            }, minimumSize: Size(40, 40),
                           ),
                       ],
                     ),

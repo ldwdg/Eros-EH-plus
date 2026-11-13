@@ -16,14 +16,13 @@ class PHashImageListPage extends GetView<ImageBlockController> {
         trailing: CupertinoButton(
           // 清除按钮
           padding: const EdgeInsets.all(0),
-          minSize: 40,
           child: const Icon(
             CupertinoIcons.trash,
             size: 24,
           ),
           onPressed: () {
             controller.customBlockList.clear();
-          },
+          }, minimumSize: Size(40, 40),
         ),
       ),
       child: CustomScrollView(slivers: [

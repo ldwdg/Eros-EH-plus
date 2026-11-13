@@ -103,7 +103,6 @@ class QuickSearchListPage extends StatelessWidget {
         children: <Widget>[
           // 清除按钮
           CupertinoButton(
-            minSize: 40,
             padding: const EdgeInsets.all(0),
             child: const FaIcon(
               FontAwesomeIcons.solidTrashCan,
@@ -111,26 +110,24 @@ class QuickSearchListPage extends StatelessWidget {
             ),
             onPressed: () {
               _removeAll();
-            },
+            }, minimumSize: Size(40, 40),
           ),
           CupertinoButton(
-            minSize: 40,
             padding: const EdgeInsets.all(0),
             onPressed: _showFile,
             child: const FaIcon(
               FontAwesomeIcons.solidFileLines,
               size: 20,
-            ),
+            ), minimumSize: Size(40, 40),
           ),
           if (Get.find<WebdavController>().syncQuickSearch)
             CupertinoButton(
-              minSize: 40,
               padding: const EdgeInsets.all(0),
               onPressed: quickSearchController.syncQuickSearch,
               child: const FaIcon(
                 FontAwesomeIcons.arrowsRotate,
                 size: 20,
-              ),
+              ), minimumSize: Size(40, 40),
             ),
         ],
       ),

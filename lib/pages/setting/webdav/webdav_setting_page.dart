@@ -31,7 +31,6 @@ class WebDavSetting extends GetView<WebdavController> {
         child: controller.validAccount
             ? const SizedBox.shrink()
             : CupertinoButton(
-                minSize: 40,
                 padding: const EdgeInsets.all(0),
                 child: const Icon(
                   CupertinoIcons.person_add,
@@ -45,7 +44,7 @@ class WebDavSetting extends GetView<WebdavController> {
                   if (result != null && result is bool && result) {
                     Get.back();
                   }
-                },
+                }, minimumSize: Size(40, 40),
               ),
       );
     });

@@ -1480,7 +1480,7 @@ class ThumbnailListView extends GetView<ViewExtController> {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.6),
+                    color: Colors.black.withValues(alpha: 0.6),
                     borderRadius: const BorderRadius.all(Radius.circular(40.0)),
                   ),
                   alignment: Alignment.center,

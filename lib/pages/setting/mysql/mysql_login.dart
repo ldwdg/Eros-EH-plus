@@ -131,7 +131,6 @@ class _MysqlLoginState extends State<MysqlLogin> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CupertinoButton(
-                        minSize: 100,
                         borderRadius:
                             const BorderRadius.all(Radius.circular(30.0)),
                         padding: const EdgeInsets.symmetric(
@@ -189,7 +188,7 @@ class _MysqlLoginState extends State<MysqlLogin> {
                               },
                         child: _loadingLogin
                             ? const CupertinoActivityIndicator()
-                            : Text(L10n.of(context).login),
+                            : Text(L10n.of(context).login), minimumSize: Size(100, 100),
                       ),
                     ],
                   ),

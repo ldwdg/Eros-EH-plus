@@ -175,7 +175,7 @@ class _CustomTabbarListState extends State<CustomTabbarList> {
     return CupertinoNavigationBar(
       transitionBetweenRoutes: false,
       backgroundColor: kEnableImpeller
-          ? CupertinoTheme.of(context).barBackgroundColor.withOpacity(1)
+          ? CupertinoTheme.of(context).barBackgroundColor.withValues(alpha: 1)
           : null,
       border: null,
       // border: Border(
@@ -217,7 +217,6 @@ class _CustomTabbarListState extends State<CustomTabbarList> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             CupertinoButton(
-              minSize: 40,
               padding: const EdgeInsets.all(0),
               child: const Icon(
                 CupertinoIcons.search,
@@ -225,14 +224,13 @@ class _CustomTabbarListState extends State<CustomTabbarList> {
               ),
               onPressed: () {
                 NavigatorUtil.goSearchPage();
-              },
+              }, minimumSize: Size(40, 40),
             ),
             // 页码跳转按钮
             // JumpButton(controller: controller),
             Obx(() {
               if (controller.afterJump) {
                 return CupertinoButton(
-                  minSize: 40,
                   padding: const EdgeInsets.all(0),
                   child: const Icon(
                     CupertinoIcons.arrow_up_circle,
@@ -240,14 +238,13 @@ class _CustomTabbarListState extends State<CustomTabbarList> {
                   ),
                   onPressed: () {
                     controller.jumpToTop();
-                  },
+                  }, minimumSize: Size(40, 40),
                 );
               } else {
                 return const SizedBox();
               }
             }),
             CupertinoButton(
-              minSize: 40,
               padding: const EdgeInsets.all(0),
               child: const Icon(
                 CupertinoIcons.arrow_uturn_down_circle,
@@ -255,7 +252,7 @@ class _CustomTabbarListState extends State<CustomTabbarList> {
               ),
               onPressed: () {
                 controller.showJumpDialog(context);
-              },
+              }, minimumSize: Size(40, 40),
             ),
           ],
         ),
@@ -275,7 +272,6 @@ class JumpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-      minSize: 36,
       padding: const EdgeInsets.only(right: 6),
       child: Container(
         alignment: Alignment.center,
@@ -304,7 +300,7 @@ class JumpButton extends StatelessWidget {
       ),
       onPressed: () {
         controller.showJumpDialog(context);
-      },
+      }, minimumSize: Size(36, 36),
     );
   }
 }
@@ -402,7 +398,6 @@ class CustomTabBar extends StatelessWidget {
                           bool isRefresh = false;
                           return StatefulBuilder(builder: (context, setState) {
                             return CupertinoButton(
-                              minSize: 40,
                               padding: const EdgeInsets.all(0),
                               child: isRefresh
                                   ? const CupertinoActivityIndicator(radius: 10)
@@ -420,17 +415,16 @@ class CustomTabBar extends StatelessWidget {
                                     isRefresh = false;
                                   });
                                 }
-                              },
+                              }, minimumSize: Size(40, 40),
                             );
                           });
                         }),
                       CupertinoButton(
-                        minSize: 40,
                         padding: const EdgeInsets.all(0),
                         onPressed: controller.pressedBar,
                         child: const FaIcon(FontAwesomeIcons.bars,
                           size: 20,
-                        ),
+                        ), minimumSize: Size(40, 40),
                       ),
                     ],
                   ),

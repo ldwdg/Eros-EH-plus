@@ -73,7 +73,7 @@ class GalleryItemGrid extends StatelessWidget {
               ),
               child: Container(
                 foregroundDecoration: RotatedCornerDecoration.withColor(
-                  color: _colorCategory.withOpacity(0.8),
+                  color: _colorCategory.withValues(alpha: 0.8),
                   // labelInsets: const LabelInsets(baselineShift: 0.2, start: 2),
                   // geometry: const BadgeGeometry(
                   //     width: kCategoryWidth, height: kCategoryHeight),
@@ -340,7 +340,7 @@ class _CoverImage extends StatelessWidget {
           blur: 10,
           colorOpacity: ehTheme.isDarkMode ? 0.5 : 0.1,
           blurColor:
-              CupertinoTheme.of(context).barBackgroundColor.withOpacity(1),
+              CupertinoTheme.of(context).barBackgroundColor.withValues(alpha: 1),
         ),
       );
 
