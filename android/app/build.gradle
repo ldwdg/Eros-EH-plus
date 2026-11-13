@@ -51,7 +51,7 @@ android {
         applicationId "com.ldwdg.erosehentai"
         minSdkVersion flutter.minSdkVersion
         //noinspection EditedTargetSdkVersion
-        targetSdkVersion 36
+        targetSdkVersion 37
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         archivesBaseName = "Eros-EH+_$versionName+$versionCode"
@@ -119,6 +119,6 @@ dependencies {
 
 ext {
     compileSdkVersion   = 36
-    targetSdkVersion    = 36
+    targetSdkVersion    = 37
     appCompatVersion    = "2.1.0"
 }
