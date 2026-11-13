@@ -5,6 +5,7 @@ import 'package:eros_fe/common/service/dns_service.dart';
 import 'package:eros_fe/common/service/theme_service.dart';
 // import 'package:extended_text/extended_text.dart';
 import 'package:eros_fe/index.dart';
+import 'package:eros_fe/network/request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -970,9 +971,12 @@ Future<void> showUserCookie() async {
           ),
           CupertinoDialogAction(
             child: Text(L10n.of(context).refresh_igneous),
-            onPressed: () {
+            onPressed: () async {
               Get.back();
-              userController.removeIgneous();
+              final bool ok = await refreshExIgneous();
+              showToast(ok
+                  ? 'ExHentai credentials refreshed'
+                  : 'Failed to refresh ExHentai credentials');
             },
           ),
         ],

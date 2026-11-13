@@ -69,3 +69,9 @@ class FavOrderException extends HttpException {
       : super(message, code);
   String? order;
 }
+
+/// ExHentai 访问凭证（igneous）失效：站点返回白屏 / sad panda / banned 页面
+class EhAuthFailedException extends HttpException {
+  EhAuthFailedException({String? message, int? code})
+      : super(message, code);
+}

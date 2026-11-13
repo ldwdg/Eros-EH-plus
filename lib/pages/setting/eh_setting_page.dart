@@ -43,7 +43,9 @@ class ListViewEhSetting extends StatelessWidget {
     _ehSettingService.isSiteEx(newValue);
     Global.forceRefreshUconfig = true;
     if (newValue) {
-      getExIgneous();
+      // 切到里站：先清掉可能过期的 igneous 再重新获取，
+      // 否则会带着旧凭证请求、里站返回白屏。
+      await refreshExIgneous();
     }
     Api.selEhProfile();
     loginController.asyncGetUserInfo();

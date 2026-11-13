@@ -7,6 +7,7 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:eros_fe/common/controller/advance_search_controller.dart';
+import 'package:eros_fe/common/controller/user_controller.dart';
 import 'package:eros_fe/common/parser/eh_parser.dart';
 import 'package:eros_fe/component/exception/error.dart';
 import 'package:eros_fe/index.dart';
@@ -138,6 +139,24 @@ Future<GalleryList?> getGallery({
     options: getCacheOptions(refresh: refresh),
     cancelToken: cancelToken,
   );
+
+  // 里站凭证失效：自动刷新 igneous 后重试一次（避免白屏）
+  if (httpResponse.error is EhAuthFailedException &&
+      Api.getBaseUrl().contains('exhentai')) {
+    logger.d('ExHentai auth failed, refresh igneous and retry once');
+    final bool healed = await refreshExIgneous();
+    if (healed) {
+      httpResponse = await dioHttpClient.get(
+        _url,
+        queryParameters: _params,
+        httpTransformer: isFav
+            ? FavoriteListHttpTransformer()
+            : GalleryListHttpTransformer(),
+        options: getCacheOptions(refresh: true),
+        cancelToken: cancelToken,
+      );
+    }
+  }
 
   if (httpResponse.error is ListDisplayModeException) {
     logger.d('ListDisplayModeException');
@@ -1113,6 +1132,23 @@ Future<Map> getGithubApi(String url) async {
     return httpResponse.data as Map;
   } else {
     throw httpResponse.error ?? HttpException('getTranslateTagDBInfo error');
+  }
+}
+
+/// 里站凭证自愈：先删除过期的 igneous，再重新获取（GET uconfig.php 会下发新值）。
+/// 返回是否成功拿到新的 igneous。
+Future<bool> refreshExIgneous() async {
+  try {
+    final UserController userController = Get.find();
+    await userController.removeIgneous();
+    await getExIgneous();
+    final String? igneous = userController.user.value.igneous;
+    final bool ok = igneous != null && igneous.isNotEmpty;
+    logger.d('refreshExIgneous ok=$ok');
+    return ok;
+  } catch (e) {
+    logger.e('refreshExIgneous failed: $e');
+    return false;
   }
 }
 

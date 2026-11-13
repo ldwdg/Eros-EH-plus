@@ -15,6 +15,20 @@ import 'http_response.dart';
 typedef HttpTransformerBuilderCallback = FutureOr<DioHttpResponse> Function(
     Response response);
 
+/// 判断页面是否是 ExHentai 凭证失效（白屏 / sad panda / banned）。
+/// 这类页面必须当错误处理，否则会被解析成空列表、界面静默白屏。
+bool isEhAuthFailurePage(String? html) {
+  final String text = (html ?? '').trim();
+  if (text.isEmpty) {
+    return true;
+  }
+  final String lower = text.toLowerCase();
+  return lower.contains('sad panda') ||
+      lower.contains('temporarily banned') ||
+      lower.contains('requires you to be logged in') ||
+      lower.contains('you must be logged in');
+}
+
 /// Response 解析
 abstract class HttpTransformer {
   FutureOr<DioHttpResponse<dynamic>> parse(Response response);
@@ -72,6 +86,16 @@ class GalleryListHttpTransformer extends HttpTransformer {
       Response<dynamic> response) async {
     final html = response.data as String;
 
+    // 里站凭证失效（白屏 / sad panda / banned）：不能当作空列表
+    if (isEhAuthFailurePage(html)) {
+      return DioHttpResponse<GalleryList>.failureFromError(
+        EhAuthFailedException(
+          message: 'ExHentai credentials expired (igneous). '
+              'Refresh Igneous in Settings -> EH, or switch to E-hentai.',
+        ),
+      );
+    }
+
     // 列表样式检查 不符合则设置参数重新请求
     final bool isDml = isGalleryListDmL(html);
     if (isDml) {
@@ -99,6 +123,16 @@ class FavoriteListHttpTransformer extends HttpTransformer {
   FutureOr<DioHttpResponse<GalleryList>> parse(
       Response<dynamic> response) async {
     final html = response.data as String;
+
+    // 里站凭证失效（白屏 / sad panda / banned）：不能当作空收藏夹
+    if (isEhAuthFailurePage(html)) {
+      return DioHttpResponse<GalleryList>.failureFromError(
+        EhAuthFailedException(
+          message: 'ExHentai credentials expired (igneous). '
+              'Refresh Igneous in Settings -> EH, or switch to E-hentai.',
+        ),
+      );
+    }
 
     // 排序方式检查
     final FavoriteOrder order = EnumToString.fromString(
